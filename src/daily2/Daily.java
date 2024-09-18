@@ -82,7 +82,7 @@ public class Daily {
    */
 
   public static void nFibonacciSequence(int n) {
-    int[] nFibonacci = new int[n];
+    long[] nFibonacci = new long[n];
     if (n <= 0) {
       System.out.println("n must be more than 0");
     }
@@ -91,7 +91,7 @@ public class Daily {
       nFibonacci[i] = i <= 1 ? 1 : nFibonacci[i - 2] + nFibonacci[i - 1];
     }
 
-    for (int num : nFibonacci) {
+    for (long num : nFibonacci) {
       System.out.print(num + " ");
     }
   }
