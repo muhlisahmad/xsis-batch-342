@@ -41,6 +41,7 @@ public class Daily {
   }
 
   public static int[] minMax(int num1, int num2, int num3, int num4) {
+    // Versi #1
     int[] nums = new int[] {num1, num2, num3, num4};
     for (var i = 0; i < nums.length - 1; i++) {
       for (var j = i + 1; j < nums.length; j++) {
@@ -53,7 +54,22 @@ public class Daily {
         }
       }
     }
+
+    // Versi #2
+    // int max = 0;
+    // int min = 0;
+    // for (var i = 0; i < nums.length; i++) {
+    //   if (i == 0) {
+    //     min = nums[i];
+    //     max = nums[i];
+    //   } else {
+    //     min = (min < nums[i]) ? min : nums[i];
+    //     max = (max > nums[i]) ? max : nums[i];
+    //   }
+    // }
+
     return new int[] {nums[0], nums[nums.length - 1]};
+    // return new int[] {min, max};
   }
 
   public static boolean inRange(int num1, int num2) {
