@@ -75,4 +75,37 @@ public class Daily {
   public static boolean inRange(int num1, int num2) {
     return (num1 >= 30 && num1 <= 50 && num2 >= 30 && num2 <= 50);
   }
+
+  /*
+   * 5. Buatlah fungsi deret fibonacci. parameter merupakan panjang deret angka yang tercetak
+   * 6. Buatlah fungsi faktorial
+   */
+
+  public static void nFibonacciSequence(int n) {
+    // Scanner scannerInput = new Scanner(System.in);
+    // System.out.print("Insert n numbers of fibonacci sequence to be return: ");
+    // int nInput = scannerInput.nextInt();
+    // scannerInput.close();
+    int[] nFibonacci = new int[n];
+    if (n <= 0) {
+      System.out.println("n must be more than 0");
+      // return "n must be more than 0";
+    }
+
+    for (int i = 0; i < nFibonacci.length; i++) {
+      nFibonacci[i] = i <= 1 ? 1 : nFibonacci[i - 2] + nFibonacci[i - 1];
+    }
+
+    for (int num : nFibonacci) {
+      System.out.print(num + " ");
+    }
+  }
+
+  public static int nFactorial(int n) {
+    if (n == 1) {
+      return 1;
+    } else {
+      return n * nFactorial(n - 1);
+    }
+  }
 }
