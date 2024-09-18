@@ -1,4 +1,5 @@
 // import warmup1.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import daily2.*;
@@ -9,14 +10,22 @@ public class Main {
     // System.out.println(Arrays.toString(Daily.minMax(82, 231, 322, 231))); // not candy
 
     Scanner scannerInput = new Scanner(System.in);
-    System.out.print("Insert n numbers of fibonacci sequence to be return: ");
-    int nFibonacci = scannerInput.nextInt();
-    Daily.nFibonacciSequence(nFibonacci);
+
+    // System.out.print("Insert n numbers of fibonacci sequence to be return: ");
+    // int nFibonacci = scannerInput.nextInt();
+    // Daily.nFibonacciSequence(nFibonacci);
     
-    System.out.println();
-    System.out.print("Insert n numbers of factorials to be return: ");
-    int nFactorial = scannerInput.nextInt();
-    System.out.println(Daily.nFactorial(nFactorial));
+    // System.out.println();
+    // System.out.print("Insert n numbers of factorials to be return: ");
+    // int nFactorial = scannerInput.nextInt();
+    // System.out.println(Daily.nFactorial(nFactorial));
+
+    System.out.print("Insert n numbers for n*n size unit matrix: ");
+    int nSizeMatrix = scannerInput.nextInt();
+    // System.out.println(Arrays.deepToString(Daily.nSizeUnitMatrix(nSizeMatrix)));
+    for (int[] row : Daily.nSizeUnitMatrix(nSizeMatrix)) {
+      System.out.println(Arrays.toString(row));
+    }
 
     scannerInput.close();
   }

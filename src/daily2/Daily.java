@@ -103,4 +103,14 @@ public class Daily {
       return n * nFactorial(n - 1);
     }
   }
+
+  public static int[][] nSizeUnitMatrix(int n) {
+    int[][] result = new int[n][n];
+    for (int i = 0; i < result.length; i++) {
+      for (int j = 0; j < result[i].length; j++) {
+        result[i][j] = i == j ? 1 : 0;
+      }
+    }
+    return result;
+  }
 }
