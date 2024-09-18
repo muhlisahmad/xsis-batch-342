@@ -82,14 +82,9 @@ public class Daily {
    */
 
   public static void nFibonacciSequence(int n) {
-    // Scanner scannerInput = new Scanner(System.in);
-    // System.out.print("Insert n numbers of fibonacci sequence to be return: ");
-    // int nInput = scannerInput.nextInt();
-    // scannerInput.close();
     int[] nFibonacci = new int[n];
     if (n <= 0) {
       System.out.println("n must be more than 0");
-      // return "n must be more than 0";
     }
 
     for (int i = 0; i < nFibonacci.length; i++) {
