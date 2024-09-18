@@ -42,7 +42,6 @@ public class Daily {
 
   public static int[] minMax(int num1, int num2, int num3, int num4) {
     int[] nums = new int[] {num1, num2, num3, num4};
-    // int[] sortNums = new int[4];
     for (var i = 0; i < nums.length - 1; i++) {
       for (var j = i + 1; j < nums.length; j++) {
         if (nums[i] > nums[j]) {
