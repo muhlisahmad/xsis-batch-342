@@ -34,10 +34,18 @@ public class Main {
     // String dayName = scannerInput.next();
     // System.out.println(Daily02.dayNumber(dayName));
 
-    System.out.print("Insert day: ");
-    String dayName = scannerInput.next();
-    Daily02.weekComposition(dayName);
+    // System.out.print("Insert day: ");
+    // String dayName = scannerInput.next();
+    // Daily02.weekComposition(dayName);
 
+    System.out.print("Insert year: ");
+    int year = scannerInput.nextInt();
+    System.out.println(Daily02.leapYear(year));
+
+    System.out.print("Insert n numbers of additions: ");
+    int nAddition = scannerInput.nextInt();
+    Daily02.oddEvenAddition(nAddition);
+;
     scannerInput.close();
   }
 }
