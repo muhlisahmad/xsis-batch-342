@@ -1,8 +1,8 @@
 // import warmup1.*;
-import java.util.Arrays;
+// import java.util.Arrays;
 import java.util.Scanner;
 
-import daily2.*;
+import dailyQuest.*;
 public class Main {
   public static void main(String[] args) {
     // System.out.println(Arrays.toString(Daily.minMax(2, 8, 9, 4))); // not candy
@@ -20,12 +20,19 @@ public class Main {
     // int nFactorial = scannerInput.nextInt();
     // System.out.println(Daily.nFactorial(nFactorial));
 
-    System.out.print("Insert n numbers for n*n size unit matrix: ");
-    int nSizeMatrix = scannerInput.nextInt();
+    // System.out.print("Insert n numbers for n*n size unit matrix: ");
+    // int nSizeMatrix = scannerInput.nextInt();
     // System.out.println(Arrays.deepToString(Daily.nSizeUnitMatrix(nSizeMatrix)));
-    for (int[] row : Daily.nSizeUnitMatrix(nSizeMatrix)) {
-      System.out.println(Arrays.toString(row));
-    }
+    // for (int[] row : Daily01.nSizeUnitMatrix(nSizeMatrix)) {
+    //   System.out.println(Arrays.toString(row));
+    // }
+
+    System.out.print("Insert nth day in a week: ");
+    int nthDay = scannerInput.nextInt();
+    System.out.println(Daily02.dayName(nthDay));
+    System.out.print("Insert day name: ");
+    String dayName = scannerInput.next();
+    System.out.println(Daily02.dayNumber(dayName));
 
     scannerInput.close();
   }

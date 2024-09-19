@@ -1,6 +1,6 @@
-package daily2;
+package dailyQuest;
 
-public class Daily {
+public class Daily01 {
   /*
    * Buatlah funciton untuk soal2 berikut
    * 1. menentukan generasi berdasarkan tahun lahir
