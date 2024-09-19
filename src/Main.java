@@ -27,12 +27,16 @@ public class Main {
     //   System.out.println(Arrays.toString(row));
     // }
 
-    System.out.print("Insert nth day in a week: ");
-    int nthDay = scannerInput.nextInt();
-    System.out.println(Daily02.dayName(nthDay));
-    System.out.print("Insert day name: ");
+    // System.out.print("Insert nth day in a week: ");
+    // int nthDay = scannerInput.nextInt();
+    // System.out.println(Daily02.dayName(nthDay));
+    // System.out.print("Insert day name: ");
+    // String dayName = scannerInput.next();
+    // System.out.println(Daily02.dayNumber(dayName));
+
+    System.out.print("Insert day: ");
     String dayName = scannerInput.next();
-    System.out.println(Daily02.dayNumber(dayName));
+    Daily02.weekComposition(dayName);
 
     scannerInput.close();
   }
