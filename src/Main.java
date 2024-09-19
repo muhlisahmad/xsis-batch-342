@@ -40,7 +40,7 @@ public class Main {
 
     System.out.print("Insert year: ");
     int year = scannerInput.nextInt();
-    System.out.println(Daily02.leapYear(year));
+    Daily02.leapYear(year);
 
     System.out.print("Insert n numbers of additions: ");
     int nAddition = scannerInput.nextInt();

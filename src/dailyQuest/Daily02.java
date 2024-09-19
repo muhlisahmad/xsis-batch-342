@@ -1,6 +1,4 @@
 package dailyQuest;
-
-import java.lang.StringBuilder;
 public class Daily02 {
   public static String dayName(int nth) {
     switch (nth) {
@@ -60,27 +58,28 @@ public class Daily02 {
     System.out.println("besok lusa adalah hari " + dayName(nthDay >= 6 ? 2 - (7 - nthDay) : nthDay + 2));
   }
 
-  public static String leapYear(int year) {
+  public static void leapYear(int year) {
     if (year > 2024) {
-      return "Year out of range";
+      System.out.println("Year out of range");
+      return;
     }
 
-    StringBuilder strBuilder = new StringBuilder();
     for (int i = 0; i <= 2024 - year; i++) {
       if ((year + i) % 4 == 0) {
         if ((year + i) % 100 == 0) {
           if ((year + i) % 400 == 0) {
-            strBuilder.append(i == 0 ? "" + (year + i) : ", " + (year + i));
+            System.out.print(i == 0 ? "" + (year + i) : ", " + (year + i));
           } else {
             continue;
           }
         } else {
-          strBuilder.append(i == 0 ? "" + (year + i) : ", " + (year + i));
+          System.out.print(i == 0 ? "" + (year + i) : ", " + (year + i));
         }
       }
+      if (i == 2024 - year) {
+        System.out.println();
+      }
     }
-
-    return strBuilder.toString();
   }
 
   public static void oddEvenAddition(int n) {
