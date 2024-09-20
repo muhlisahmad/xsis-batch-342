@@ -46,24 +46,38 @@ public class Main {
     // int nAddition = scannerInput.nextInt();
     // Daily03.oddEvenAddition(nAddition);
 
-    System.out.print("Insert the size of n*n square array: ");
-    int nSize = scannerInput.nextInt();
-    Daily04.indexSquareArray(nSize);
+    // System.out.print("Insert the size of n*n square array: ");
+    // int nSize = scannerInput.nextInt();
+    // Daily04.indexSquareArray(nSize);
 
-    System.out.println("\nInsert the size of n*m array");
-    System.out.print("row size\t: ");
-    int rowSize = scannerInput.nextInt();
-    System.out.print("column size\t: ");
-    int colSize = scannerInput.nextInt();
-    Daily04.indexArray(rowSize, colSize);
+    // System.out.println("\nInsert the size of n*m array");
+    // System.out.print("row size\t: ");
+    // int rowSize = scannerInput.nextInt();
+    // System.out.print("column size\t: ");
+    // int colSize = scannerInput.nextInt();
+    // Daily04.indexArray(rowSize, colSize);
     
-    System.out.println("\nInsert the size of n*m array to print out asterisk");
-    System.out.print("row size\t: ");
-    int asteriskRow = scannerInput.nextInt();
-    System.out.print("column size\t: ");
-    int asteriskCol = scannerInput.nextInt();
-    Daily04.asteriskArray(asteriskRow, asteriskCol);
-;
+    // System.out.println("\nInsert the size of n*m array to print out asterisk");
+    // System.out.print("row size\t: ");
+    // int asteriskRow = scannerInput.nextInt();
+    // System.out.print("column size\t: ");
+    // int asteriskCol = scannerInput.nextInt();
+    // Daily04.asteriskArray(asteriskRow, asteriskCol);
+
+    System.out.print("Insert the height of the left triangle\t: ");
+    int leftHeight = scannerInput.nextInt();
+    System.out.print("Wanna print out as asterisk (Y/n)\t: ");
+    String isLeftAsteriskInput = scannerInput.next();
+    boolean isLeftAsterisk = isLeftAsteriskInput.equalsIgnoreCase("y");
+    Daily04.leftTriangle(leftHeight, isLeftAsterisk);
+
+    System.out.print("Insert the height of the right triangle\t: ");
+    int rightHeight = scannerInput.nextInt();
+    System.out.print("Wanna print out as asterisk (Y/n)\t: ");
+    String isRightAsteriskInput = scannerInput.next();
+    boolean isRightAsterisk = isRightAsteriskInput.equalsIgnoreCase("y");
+    Daily04.rightTriangle(rightHeight, isRightAsterisk);
+
     scannerInput.close();
   }
 }

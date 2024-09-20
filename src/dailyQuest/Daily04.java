@@ -35,4 +35,22 @@ public class Daily04 {
       System.out.println();
     }
   }
+
+  public static void leftTriangle(int nRow, boolean asterisk) {
+    for (int i = 0; i < nRow; i++) {
+      for (int j = 0; j < nRow; j++) {
+        System.out.print((j <= i) ? asterisk ? "* " : j + 1 + " " : "");
+      }
+      System.out.println();
+    }
+  }
+
+  public static void rightTriangle(int nRow, boolean asterisk) {
+    for (int i = 0; i < nRow; i++) {
+      for (int j = 0; j < nRow; j++) {
+        System.out.print((j <= (nRow - 1 - i)) ? asterisk ? "* " : j + 1 + " " : "  ");
+      }
+      System.out.println();
+    }
+  }
 }
