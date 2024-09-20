@@ -40,11 +40,11 @@ public class Main {
 
     System.out.print("Insert year: ");
     int year = scannerInput.nextInt();
-    Daily02.leapYear(year);
+    Daily03.leapYear(year);
 
     System.out.print("Insert n numbers of additions: ");
     int nAddition = scannerInput.nextInt();
-    Daily02.oddEvenAddition(nAddition);
+    Daily03.oddEvenAddition(nAddition);
 ;
     scannerInput.close();
   }
