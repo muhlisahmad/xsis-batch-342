@@ -21,7 +21,6 @@ public class Daily04 {
   public static void indexArray(int rows, int cols) {
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
-        // System.out.print((j == 0) ? "[[" + i + ", " + j + "]" : (j == cols - 1) ? "[" + i + ", " + j + "]]" : "[" + i + ", " + j + "]");
         System.out.print((i == 0 && j == 0) ? "[[" + i + ", " + j + "]; " : (j == 0) ? " [" + i + ", " + j + "]; " : (i == rows - 1 && j == cols - 1) ? "[" + i + ", " + j + "]]" : "[" + i + ", " + j + "]; ");
       }
       System.out.println();
