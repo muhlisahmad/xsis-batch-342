@@ -47,8 +47,18 @@ public class Daily04 {
 
   public static void rightTriangle(int nRow, boolean asterisk) {
     for (int i = 0; i < nRow; i++) {
+      int sequence = 1;
       for (int j = 0; j < nRow; j++) {
-        System.out.print((j <= (nRow - 1 - i)) ? asterisk ? "* " : j + 1 + " " : "  ");
+        if (j < (nRow - 1 - i)) {
+          System.out.print("  ");
+        } else {
+          if (asterisk) {
+            System.out.print("* ");
+          } else {
+            System.out.print(sequence + " ");
+            sequence++;
+          }
+        }
       }
       System.out.println();
     }
