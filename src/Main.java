@@ -38,13 +38,31 @@ public class Main {
     // String dayName = scannerInput.next();
     // Daily02.weekComposition(dayName);
 
-    System.out.print("Insert year: ");
-    int year = scannerInput.nextInt();
-    Daily03.leapYear(year);
+    // System.out.print("Insert year: ");
+    // int year = scannerInput.nextInt();
+    // Daily03.leapYear(year);
 
-    System.out.print("Insert n numbers of additions: ");
-    int nAddition = scannerInput.nextInt();
-    Daily03.oddEvenAddition(nAddition);
+    // System.out.print("Insert n numbers of additions: ");
+    // int nAddition = scannerInput.nextInt();
+    // Daily03.oddEvenAddition(nAddition);
+
+    System.out.print("Insert the size of n*n square array: ");
+    int nSize = scannerInput.nextInt();
+    Daily04.indexSquareArray(nSize);
+
+    System.out.println("\nInsert the size of n*m array");
+    System.out.print("row size\t: ");
+    int rowSize = scannerInput.nextInt();
+    System.out.print("column size\t: ");
+    int colSize = scannerInput.nextInt();
+    Daily04.indexArray(rowSize, colSize);
+    
+    System.out.println("\nInsert the size of n*m array to print out asterisk");
+    System.out.print("row size\t: ");
+    int asteriskRow = scannerInput.nextInt();
+    System.out.print("column size\t: ");
+    int asteriskCol = scannerInput.nextInt();
+    Daily04.asteriskArray(asteriskRow, asteriskCol);
 ;
     scannerInput.close();
   }
