@@ -80,13 +80,25 @@ public class Main {
 
     System.out.print("Insert the size of the square\t: ");
     int squareSize = scannerInput.nextInt();
-    Daily05.strokeAsteriskArray(squareSize);
-    System.out.println();
+    // Daily05.strokeAsteriskArray(squareSize);
+    // System.out.println();
+    for (String[] arrStr : Daily05.strokeReturnArray(squareSize)) {
+      for (String str : arrStr) {
+        System.out.print(str);
+      }
+      System.out.println();
+    }
 
     System.out.print("Insert the size of the square\t: ");
     int crossSize = scannerInput.nextInt();
-    Daily05.crossAsteriskArray(crossSize);
-    System.out.println();
+    // Daily05.crossAsteriskArray(crossSize);
+    // System.out.println();
+    for (String[] arrStr : Daily05.crossReturnArray(crossSize)) {
+      for (String str : arrStr) {
+        System.out.print(str);
+      }
+      System.out.println();
+    }
 
     scannerInput.close();
   }
