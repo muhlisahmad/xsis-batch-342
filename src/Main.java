@@ -128,10 +128,5 @@ public class Main {
     System.out.println("Min\t: " + Daily05.minArray(arr));
 
     scannerInput.close();
-    // float a = 1990;
-    // float b = 12;
-    // float c = a/b;
-
-    // System.out.println(c);
   }
 }
