@@ -78,24 +78,44 @@ public class Main {
     // boolean isRightAsterisk = isRightAsteriskInput.equalsIgnoreCase("y");
     // Daily04.rightTriangle(rightHeight, isRightAsterisk);
 
-    System.out.print("Insert the size of the square\t: ");
-    int squareSize = scannerInput.nextInt();
-    // Daily05.strokeAsteriskArray(squareSize);
-    // System.out.println();
-    for (String[] arrStr : Daily05.strokeReturnArray(squareSize)) {
-      for (String str : arrStr) {
-        System.out.print(str);
-      }
-      System.out.println();
-    }
+    // System.out.print("Insert the size of the square\t: ");
+    // int squareSize = scannerInput.nextInt();
+    // // Daily05.strokeAsteriskArray(squareSize);
+    // // System.out.println();
+    // for (String[] arrStr : Daily05.strokeReturnArray(squareSize)) {
+    //   for (String str : arrStr) {
+    //     System.out.print(str);
+    //   }
+    //   System.out.println();
+    // }
+
+    // System.out.print("Insert the size of the square\t: ");
+    // int crossSize = scannerInput.nextInt();
+    // // Daily05.crossAsteriskArray(crossSize);
+    // // System.out.println();
+    // for (String[] arrStr : Daily05.crossReturnArray(crossSize)) {
+    //   for (String str : arrStr) {
+    //     System.out.print(str);
+    //   }
+    //   System.out.println();
+    // }
 
     System.out.print("Insert the size of the square\t: ");
-    int crossSize = scannerInput.nextInt();
-    // Daily05.crossAsteriskArray(crossSize);
-    // System.out.println();
-    for (String[] arrStr : Daily05.crossReturnArray(crossSize)) {
-      for (String str : arrStr) {
-        System.out.print(str);
+    int squareSize = scannerInput.nextInt();
+    Daily05.reversedArray(squareSize);
+    System.out.println();
+    // for (String[] arrStr : Daily05.crossReturnArray(squareSize)) {
+    //   for (String str : arrStr) {
+    //     System.out.print(str);
+    //   }
+    //   System.out.println();
+    // }
+    
+    System.out.print("Insert the size of the square\t: ");
+    int oddEvenSize = scannerInput.nextInt();
+    for (int[] arrInteger : Daily05.oddEvenArray(oddEvenSize)) {
+      for (int integer : arrInteger) {
+        System.out.print(integer + "\t");
       }
       System.out.println();
     }

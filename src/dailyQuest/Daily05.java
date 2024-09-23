@@ -38,4 +38,30 @@ public class Daily05 {
     }
     return result;
   }
+
+  public static void reversedArray(int size) {
+    int substract = 0;
+    for (int i = 0; i < size; i++) {
+      for (int j = 0; j < size; j++) {
+        System.out.print(size * size - substract + "\t");
+        substract++;
+      }
+      System.out.println();
+    }
+  }
+
+  public static int[][] oddEvenArray(int size) {
+    int num = 1;
+    int[][] result = new int[size][size];
+    for (int i = 0; i < size; i+=2) {
+      for (int j = 0; j < size; j++) {
+        result[i][j] = num;
+        if (i+1 < size) {
+          result[i+1][j] = num + 1;
+        }
+        num+=2;
+      }
+    }
+    return result;
+  }
 }
