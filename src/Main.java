@@ -104,12 +104,6 @@ public class Main {
     int squareSize = scannerInput.nextInt();
     Daily05.reversedArray(squareSize);
     System.out.println();
-    // for (String[] arrStr : Daily05.crossReturnArray(squareSize)) {
-    //   for (String str : arrStr) {
-    //     System.out.print(str);
-    //   }
-    //   System.out.println();
-    // }
     
     System.out.print("Insert the size of the square\t: ");
     int oddEvenSize = scannerInput.nextInt();
