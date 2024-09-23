@@ -100,20 +100,38 @@ public class Main {
     //   System.out.println();
     // }
 
-    System.out.print("Insert the size of the square\t: ");
-    int squareSize = scannerInput.nextInt();
-    Daily05.reversedArray(squareSize);
-    System.out.println();
+    // System.out.print("Insert the size of the square\t: ");
+    // int squareSize = scannerInput.nextInt();
+    // Daily05.reversedArray(squareSize);
+    // System.out.println();
     
-    System.out.print("Insert the size of the square\t: ");
-    int oddEvenSize = scannerInput.nextInt();
-    for (int[] arrInteger : Daily05.oddEvenArray(oddEvenSize)) {
-      for (int integer : arrInteger) {
-        System.out.print(integer + "\t");
-      }
-      System.out.println();
+    // System.out.print("Insert the size of the square\t: ");
+    // int oddEvenSize = scannerInput.nextInt();
+    // for (int[] arrInteger : Daily05.oddEvenArray(oddEvenSize)) {
+    //   for (int integer : arrInteger) {
+    //     System.out.print(integer + "\t");
+    //   }
+    //   System.out.println();
+    // }
+
+    System.out.print("Insert the size of the array\t: ");
+    int arrSize = scannerInput.nextInt();
+    int[] arr = new int[arrSize];
+    for (int i = 0; i < arrSize; i++) {
+      System.out.print("- insert element\t: ");
+      arr[i] = scannerInput.nextInt();
     }
+    System.out.println("Mean\t: " + Daily05.meanArray(arr));
+    System.out.println("Median\t: " + Daily05.medianArray(arr));
+    System.out.println("Modus\t: " + Daily05.modusArray(arr));
+    System.out.println("Max\t: " + Daily05.maxArray(arr));
+    System.out.println("Min\t: " + Daily05.minArray(arr));
 
     scannerInput.close();
+    // float a = 1990;
+    // float b = 12;
+    // float c = a/b;
+
+    // System.out.println(c);
   }
 }
