@@ -64,19 +64,29 @@ public class Main {
     // int asteriskCol = scannerInput.nextInt();
     // Daily04.asteriskArray(asteriskRow, asteriskCol);
 
-    System.out.print("Insert the height of the left triangle\t: ");
-    int leftHeight = scannerInput.nextInt();
-    System.out.print("Wanna print out as asterisk (Y/n)\t: ");
-    String isLeftAsteriskInput = scannerInput.next();
-    boolean isLeftAsterisk = isLeftAsteriskInput.equalsIgnoreCase("y");
-    Daily04.leftTriangle(leftHeight, isLeftAsterisk);
+    // System.out.print("Insert the height of the left triangle\t: ");
+    // int leftHeight = scannerInput.nextInt();
+    // System.out.print("Wanna print out as asterisk (Y/n)\t: ");
+    // String isLeftAsteriskInput = scannerInput.next();
+    // boolean isLeftAsterisk = isLeftAsteriskInput.equalsIgnoreCase("y");
+    // Daily04.leftTriangle(leftHeight, isLeftAsterisk);
 
-    System.out.print("Insert the height of the right triangle\t: ");
-    int rightHeight = scannerInput.nextInt();
-    System.out.print("Wanna print out as asterisk (Y/n)\t: ");
-    String isRightAsteriskInput = scannerInput.next();
-    boolean isRightAsterisk = isRightAsteriskInput.equalsIgnoreCase("y");
-    Daily04.rightTriangle(rightHeight, isRightAsterisk);
+    // System.out.print("Insert the height of the right triangle\t: ");
+    // int rightHeight = scannerInput.nextInt();
+    // System.out.print("Wanna print out as asterisk (Y/n)\t: ");
+    // String isRightAsteriskInput = scannerInput.next();
+    // boolean isRightAsterisk = isRightAsteriskInput.equalsIgnoreCase("y");
+    // Daily04.rightTriangle(rightHeight, isRightAsterisk);
+
+    System.out.print("Insert the size of the square\t: ");
+    int squareSize = scannerInput.nextInt();
+    Daily05.strokeAsteriskArray(squareSize);
+    System.out.println();
+
+    System.out.print("Insert the size of the square\t: ");
+    int crossSize = scannerInput.nextInt();
+    Daily05.crossAsteriskArray(crossSize);
+    System.out.println();
 
     scannerInput.close();
   }
