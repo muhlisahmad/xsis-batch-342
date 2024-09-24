@@ -114,18 +114,24 @@ public class Main {
     //   System.out.println();
     // }
 
-    System.out.print("Insert the size of the array\t: ");
-    int arrSize = scannerInput.nextInt();
-    int[] arr = new int[arrSize];
-    for (int i = 0; i < arrSize; i++) {
-      System.out.print("- insert element\t: ");
-      arr[i] = scannerInput.nextInt();
-    }
-    System.out.println("Mean\t: " + Daily05.meanArray(arr));
-    System.out.println("Median\t: " + Daily05.medianArray(arr));
-    System.out.println("Modus\t: " + Daily05.modusArray(arr));
-    System.out.println("Max\t: " + Daily05.maxArray(arr));
-    System.out.println("Min\t: " + Daily05.minArray(arr));
+    // System.out.print("Insert the size of the array\t: ");
+    // int arrSize = scannerInput.nextInt();
+    // int[] arr = new int[arrSize];
+    // for (int i = 0; i < arrSize; i++) {
+    //   System.out.print("- insert element\t: ");
+    //   arr[i] = scannerInput.nextInt();
+    // }
+    // System.out.println("Mean\t: " + Daily05.meanArray(arr));
+    // System.out.println("Median\t: " + Daily05.medianArray(arr));
+    // System.out.println("Modus\t: " + Daily05.modusArray(arr));
+    // System.out.println("Max\t: " + Daily05.maxArray(arr));
+    // System.out.println("Min\t: " + Daily05.minArray(arr));
+
+    System.out.print("Insert words or sentences\t: ");
+    String words = scannerInput.nextLine();
+    Daily06.alphabet(words).forEach((key, value) -> {
+      System.out.println("Huruf " + key + "\t: " + value);
+    });
 
     scannerInput.close();
   }
