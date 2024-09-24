@@ -9,7 +9,7 @@ public class Main {
     // System.out.println(Arrays.toString(Daily.minMax(9, 12, 42, 32))); // not candy
     // System.out.println(Arrays.toString(Daily.minMax(82, 231, 322, 231))); // not candy
 
-    Scanner scannerInput = new Scanner(System.in);
+    // Scanner scannerInput = new Scanner(System.in);
 
     // System.out.print("Insert n numbers of fibonacci sequence to be return: ");
     // int nFibonacci = scannerInput.nextInt();
@@ -127,12 +127,14 @@ public class Main {
     // System.out.println("Max\t: " + Daily05.maxArray(arr));
     // System.out.println("Min\t: " + Daily05.minArray(arr));
 
-    System.out.print("Insert words or sentences\t: ");
-    String words = scannerInput.nextLine();
-    Daily06.alphabet(words).forEach((key, value) -> {
-      System.out.println("Huruf " + key + "\t: " + value);
-    });
+    // System.out.print("Insert words or sentences\t: ");
+    // String words = scannerInput.nextLine();
+    // Daily06.alphabet(words).forEach((key, value) -> {
+    //   System.out.println("Huruf " + key + "\t: " + value);
+    // });
 
-    scannerInput.close();
+    // scannerInput.close();
+
+    Daily06.orderMenu();
   }
 }
