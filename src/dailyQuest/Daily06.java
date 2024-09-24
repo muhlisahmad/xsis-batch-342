@@ -27,7 +27,6 @@ public class Daily06 {
         char[] tempChars = cleanedStr.toCharArray();
         Arrays.sort(tempChars);
         String finalStr = new String(tempChars);
-        // Map<String, String> result = new HashMap<>(Map.of("Huruf vokal", null, "Huruf konsonan", null));
         Map<String, String> result = new HashMap<>();
         for (int i = 0; i < finalStr.length(); i++) {
             if (vocal.contains(finalStr.charAt(i))) {
