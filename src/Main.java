@@ -155,15 +155,6 @@ public class Main {
     }
 
     System.out.println(amount + " " + unit + " : " + Daily06.cupConversion(amount, unit) + " cangkir");
-    
-    // Daily05.crossAsteriskArray(crossSize);
-    // System.out.println();
-    // for (String[] arrStr : Daily05.crossReturnArray(crossSize)) {
-      //   for (String str : arrStr) {
-        //     System.out.print(str);
-        //   }
-        //   System.out.println();
-        // }
 
     scannerInput.close();
   }
