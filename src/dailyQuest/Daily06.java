@@ -23,7 +23,7 @@ public class Daily06 {
     
 	public static Map<String, String> alphabet(String str) {
 		List<Character> vocal = new ArrayList<>(List.of('a', 'i', 'u', 'e', 'o'));
-		String cleanedStr = str.trim().toLowerCase().replaceAll("\s", "");
+		String cleanedStr = str.toLowerCase().replaceAll("\s", "");
 		char[] tempChars = cleanedStr.toCharArray();
 		Arrays.sort(tempChars);
 		String finalStr = new String(tempChars);
