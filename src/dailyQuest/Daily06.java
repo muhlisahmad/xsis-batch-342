@@ -124,10 +124,29 @@ public class Daily06 {
 	}
 
 	/*
-	 * Jika 1 botol = 2 gelas, 1 teko = 25 cangkir, 1 gelas = 2,5 cangkir.
+	 * Jika 1 botol = 2 gelas, 1 teko = 25 cangkir, 1 gelas = 2.5 cangkir.
 	 * Buatlah sistem konversi volume berdasarkan data diatas
 	 * Contoh:
 	 * 1 botol = ... cangkir?
 	 * 1 botol = 5 cangkir
 	 */
+
+	public static float cupConversion(int input, String unit) {
+		float result = 0;
+		switch (unit.trim().toLowerCase()) {
+			case "botol":
+				result = 2.5f * 2 * input;
+				break;
+			case "teko":
+				result = 25 * input;
+				break;
+			case "gelas":
+				result = 2.5f * input;
+				break;
+			default:
+				result = input;
+				break;
+		}
+		return result;
+	}
 }

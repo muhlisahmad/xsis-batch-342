@@ -9,7 +9,7 @@ public class Main {
     // System.out.println(Arrays.toString(Daily.minMax(9, 12, 42, 32))); // not candy
     // System.out.println(Arrays.toString(Daily.minMax(82, 231, 322, 231))); // not candy
 
-    // Scanner scannerInput = new Scanner(System.in);
+    Scanner scannerInput = new Scanner(System.in);
 
     // System.out.print("Insert n numbers of fibonacci sequence to be return: ");
     // int nFibonacci = scannerInput.nextInt();
@@ -132,9 +132,39 @@ public class Main {
     // Daily06.alphabet(words).forEach((key, value) -> {
     //   System.out.println("Huruf " + key + "\t: " + value);
     // });
+    
+    // Daily06.orderMenu();
+    
+    System.out.print("Insert amount\t: ");
+    int amount = scannerInput.nextInt();
+    scannerInput.nextLine();
+    String unit = null;
+    while (true) {
+      System.out.print("Insert unit\t: ");
+      unit = scannerInput.next();
+      if (unit.trim().equalsIgnoreCase("botol") ||
+          unit.trim().equalsIgnoreCase("gelas") || 
+          unit.trim().equalsIgnoreCase("teko") || 
+          unit.trim().equalsIgnoreCase("cangkir")) {
+            break;
+      } else {
+        System.out.println("Invalid input!!!");
+        System.out.println("valid input\t: botol, gelas, teko, cangkit");
+        continue;
+      }
+    }
 
-    // scannerInput.close();
+    System.out.println(amount + " " + unit + " : " + Daily06.cupConversion(amount, unit) + " cangkir");
+    
+    // Daily05.crossAsteriskArray(crossSize);
+    // System.out.println();
+    // for (String[] arrStr : Daily05.crossReturnArray(crossSize)) {
+      //   for (String str : arrStr) {
+        //     System.out.print(str);
+        //   }
+        //   System.out.println();
+        // }
 
-    Daily06.orderMenu();
+    scannerInput.close();
   }
 }
