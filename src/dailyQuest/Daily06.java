@@ -75,13 +75,14 @@ public class Daily06 {
 				try {
 					System.out.print("For how many people?\t: ");
 					manyPeople = scannerInput.nextInt();
+					scannerInput.nextLine();
 					break;
 				} catch (InputMismatchException e) {
 					System.out.println("Invalid input!!!");
+					scannerInput.nextLine();
 					continue;
 				}
 			}
-			scannerInput.nextLine();
 
 			while (true) {
 				System.out.print("For who?\t\t: ");
