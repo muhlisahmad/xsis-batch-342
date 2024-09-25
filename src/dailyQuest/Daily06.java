@@ -3,6 +3,7 @@ package dailyQuest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -70,8 +71,16 @@ public class Daily06 {
 		String tryAgain = null;
 		
 		while (true) {
-			System.out.print("For how many people?\t: ");
-			manyPeople = scannerInput.nextInt();
+			while (true) {
+				try {
+					System.out.print("For how many people?\t: ");
+					manyPeople = scannerInput.nextInt();
+					break;
+				} catch (InputMismatchException e) {
+					System.out.println("Invalid input!!!");
+					continue;
+				}
+			}
 			scannerInput.nextLine();
 
 			while (true) {
