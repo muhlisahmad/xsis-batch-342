@@ -1,5 +1,7 @@
 // import warmup1.*;
 // import java.util.Arrays;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Scanner;
 
 import dailyQuest.*;

@@ -1,6 +1,8 @@
 package dailyQuest;
 
+import java.text.NumberFormat;
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Daily07 {
@@ -104,8 +106,10 @@ public class Daily07 {
       }
     }
 
+    NumberFormat currency = NumberFormat.getCurrencyInstance(new Locale.Builder().setLanguage("id").setRegion("ID").build());
+
     balance = transfer(balance, amount, option == 1);
-    System.out.println("Transaksi berhasil, saldo anda saat ini Rp." + balance);
+    System.out.println("Transaksi berhasil, saldo anda saat ini " + currency.format(balance));
     sc.close();
   }
 
