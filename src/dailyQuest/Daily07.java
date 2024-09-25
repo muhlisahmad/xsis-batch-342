@@ -93,7 +93,7 @@ public class Daily07 {
       try {
         amount = sc.nextLong();
         sc.nextLine();
-        if (option == 1 && balance - amount < 0 || option == 2 && balance - amount - 7500 < 0) {
+        if ((option == 1 && balance - amount < 0 || option == 2 && balance - amount - 7500 < 0) && amount > 0) {
           System.out.println("Saldo tidak mencukupi\n");
           continue;
         } else {
