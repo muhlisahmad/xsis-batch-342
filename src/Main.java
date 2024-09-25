@@ -9,7 +9,7 @@ public class Main {
     // System.out.println(Arrays.toString(Daily.minMax(9, 12, 42, 32))); // not candy
     // System.out.println(Arrays.toString(Daily.minMax(82, 231, 322, 231))); // not candy
 
-    Scanner scannerInput = new Scanner(System.in);
+    // Scanner scannerInput = new Scanner(System.in);
 
     // System.out.print("Insert n numbers of fibonacci sequence to be return: ");
     // int nFibonacci = scannerInput.nextInt();
@@ -135,27 +135,29 @@ public class Main {
     
     // Daily06.orderMenu();
     
-    System.out.print("Insert amount\t: ");
-    int amount = scannerInput.nextInt();
-    scannerInput.nextLine();
-    String unit = null;
-    while (true) {
-      System.out.print("Insert unit\t: ");
-      unit = scannerInput.next();
-      if (unit.trim().equalsIgnoreCase("botol") ||
-          unit.trim().equalsIgnoreCase("gelas") || 
-          unit.trim().equalsIgnoreCase("teko") || 
-          unit.trim().equalsIgnoreCase("cangkir")) {
-            break;
-      } else {
-        System.out.println("Invalid input!!!");
-        System.out.println("valid input\t: botol, gelas, teko, cangkit");
-        continue;
-      }
-    }
+    // System.out.print("Insert amount\t: ");
+    // int amount = scannerInput.nextInt();
+    // scannerInput.nextLine();
+    // String unit = null;
+    // while (true) {
+    //   System.out.print("Insert unit\t: ");
+    //   unit = scannerInput.next();
+    //   if (unit.trim().equalsIgnoreCase("botol") ||
+    //       unit.trim().equalsIgnoreCase("gelas") || 
+    //       unit.trim().equalsIgnoreCase("teko") || 
+    //       unit.trim().equalsIgnoreCase("cangkir")) {
+    //         break;
+    //   } else {
+    //     System.out.println("Invalid input!!!");
+    //     System.out.println("valid input\t: botol, gelas, teko, cangkit");
+    //     continue;
+    //   }
+    // }
 
-    System.out.println(amount + " " + unit + " : " + Daily06.cupConversion(amount, unit) + " cangkir");
+    // System.out.println(amount + " " + unit + " : " + Daily06.cupConversion(amount, unit) + " cangkir");
+    
+    Daily07.atmMachine();
 
-    scannerInput.close();
+    // scannerInput.close();
   }
 }
