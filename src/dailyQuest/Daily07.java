@@ -45,7 +45,7 @@ public class Daily07 {
     }
 
     while (true) {
-      System.out.println("Pilihan transfer\t: 1. Antar Rekening\t2.Antar Bank\n*input pilihannya berupa angka 1 atau 2");
+      System.out.println("Pilihan transfer\t: 1. Antar Rekening\t2.Antar Bank\n\033[3m*input pilihannya berupa angka 1 atau 2\033[0m");
       try {
         option = sc.nextInt();
         sc.nextLine();
