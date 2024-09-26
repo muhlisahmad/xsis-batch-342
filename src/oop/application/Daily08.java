@@ -84,6 +84,8 @@ public class Daily08 {
       }
     }
 
+    System.out.println("= " + calculation.getResult());
+
     sc.close();
   }
 }
