@@ -17,13 +17,12 @@ public class Daily08 {
 
     while (true) {
       while (true) {
-        // System.out.print("\t: ");
         String input = sc.nextLine();
         if (input.matches(first ? firstMatcher : nonFirstMatcher)){
           if (first) {
             for (int i = 0; i < input.length(); i++) {
               if (input.charAt(i) == '+' || input.charAt(i) == '-' || input.charAt(i) == '*' || input.charAt(i) == '/' || input.charAt(i) == ':') {
-                calculation.setResult(Float.valueOf(input.substring(0, i - 1)), "addition");
+                calculation.setResult(Float.valueOf(input.substring(0, i)), "addition");
                 switch (input.charAt(i)) {
                   case '+' -> {
                     calculation.setResult(Float.valueOf(input.substring(i + 1, input.length())), "addition");
