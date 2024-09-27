@@ -161,6 +161,7 @@ public class Daily08 {
             continue;
           } catch (InputMismatchException err) {
             System.out.println("Invalid input!!!\n");
+            sc.nextLine();
             continue;
           }
         } else if (option == 2) {
@@ -186,6 +187,7 @@ public class Daily08 {
             continue;
           } catch (InputMismatchException err) {
             System.out.println("Invalid input!!!\n");
+            sc.nextLine();
             continue;
           }
         } else {
@@ -203,6 +205,7 @@ public class Daily08 {
             continue;
           } catch (InputMismatchException err) {
             System.out.println("Invalid input!!!\n");
+            sc.nextLine();
             continue;
           }
         }
