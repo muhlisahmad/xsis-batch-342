@@ -3,6 +3,7 @@
 import java.util.Scanner;
 
 import dailyQuest.*;
+import oop.application.*;
 public class Main {
   public static void main(String[] args) {
     // System.out.println(Arrays.toString(Daily.minMax(2, 8, 9, 4))); // not candy
@@ -156,7 +157,11 @@ public class Main {
 
     // System.out.println(amount + " " + unit + " : " + Daily06.cupConversion(amount, unit) + " cangkir");
     
-    Daily07.atmMachine();
+    // Daily07.atmMachine();
+
+    // Daily08.simpleCalculator();
+
+    Daily08.planeFigures();
 
     // scannerInput.close();
   }
