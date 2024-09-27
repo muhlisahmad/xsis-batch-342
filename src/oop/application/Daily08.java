@@ -127,31 +127,31 @@ public class Daily08 {
 
       while (true) {
         if (option == 1) {
-          System.out.print("Panjang sisi 1\t: ");
-          double a = sc.nextDouble();
-          sc.nextLine();
-          
-          System.out.print("Panjang sisi 2\t: ");
-          double b = sc.nextDouble();
-          sc.nextLine();
-          
-          System.out.print("Panjang sisi 3\t: ");
-          double c = sc.nextDouble();
-          sc.nextLine();
-          
-          System.out.print("Panjang sisi 4\t: ");
-          double d = sc.nextDouble();
-          sc.nextLine();
-          
-          System.out.print("Panjang diagonal 1\t: ");
-          double e = sc.nextDouble();
-          sc.nextLine();
-          
-          System.out.print("Panjang diagonal 2\t: ");
-          double f = sc.nextDouble();
-          sc.nextLine();
-
           try {
+            System.out.print("Panjang sisi 1\t: ");
+            double a = sc.nextDouble();
+            sc.nextLine();
+            
+            System.out.print("Panjang sisi 2\t: ");
+            double b = sc.nextDouble();
+            sc.nextLine();
+            
+            System.out.print("Panjang sisi 3\t: ");
+            double c = sc.nextDouble();
+            sc.nextLine();
+            
+            System.out.print("Panjang sisi 4\t: ");
+            double d = sc.nextDouble();
+            sc.nextLine();
+            
+            System.out.print("Panjang diagonal 1\t: ");
+            double e = sc.nextDouble();
+            sc.nextLine();
+            
+            System.out.print("Panjang diagonal 2\t: ");
+            double f = sc.nextDouble();
+            sc.nextLine();
+
             shape = new Tetragon(a, b, c, d, e, f);
             area = shape.calculateArea();
             circumference = shape.calculateCircumference();
@@ -159,27 +159,33 @@ public class Daily08 {
           } catch (IllegalArgumentException err) {
             System.out.println(err.getMessage() + "\n");
             continue;
+          } catch (InputMismatchException err) {
+            System.out.println("Invalid input!!!\n");
+            continue;
           }
         } else if (option == 2) {
-          System.out.print("Panjang sisi 1\t: ");
-          double a = sc.nextDouble();
-          sc.nextLine();
-          
-          System.out.print("Panjang sisi 2\t: ");
-          double b = sc.nextDouble();
-          sc.nextLine();
-          
-          System.out.print("Panjang sisi 3\t: ");
-          double c = sc.nextDouble();
-          sc.nextLine();
-  
           try {
+            System.out.print("Panjang sisi 1\t: ");
+            double a = sc.nextDouble();
+            sc.nextLine();
+            
+            System.out.print("Panjang sisi 2\t: ");
+            double b = sc.nextDouble();
+            sc.nextLine();
+            
+            System.out.print("Panjang sisi 3\t: ");
+            double c = sc.nextDouble();
+            sc.nextLine();
+            
             shape = new Trigon(a, b, c);
             area = shape.calculateArea();
             circumference = shape.calculateCircumference();
             break;
-          } catch (Exception e) {
+          } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + "\n");
+            continue;
+          } catch (InputMismatchException err) {
+            System.out.println("Invalid input!!!\n");
             continue;
           }
         } else {
@@ -192,8 +198,11 @@ public class Daily08 {
             area = shape.calculateArea();
             circumference = shape.calculateCircumference();
             break;
-          } catch (Exception e) {
+          } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + "\n");
+            continue;
+          } catch (InputMismatchException err) {
+            System.out.println("Invalid input!!!\n");
             continue;
           }
         }
