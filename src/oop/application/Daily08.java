@@ -189,11 +189,11 @@ public class Daily08 {
             continue;
           }
         } else {
-          System.out.print("Panjang jari-jari\t: ");
-          double a = sc.nextDouble();
-          sc.nextLine();
-
           try {
+            System.out.print("Panjang jari-jari\t: ");
+            double a = sc.nextDouble();
+            sc.nextLine();
+  
             shape = new Circle(a);
             area = shape.calculateArea();
             circumference = shape.calculateCircumference();
