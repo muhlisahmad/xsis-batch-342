@@ -5,7 +5,7 @@ import java.time.temporal.ChronoUnit;
 
 public class ParkingLot {
   private LocalDateTime checkInDateTime;
-  private Long price;
+  private long price;
   
   public ParkingLot() {
     this.checkInDateTime = LocalDateTime.now();
