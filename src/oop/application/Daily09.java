@@ -4,6 +4,8 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -80,6 +82,84 @@ public class Daily09 {
   }
 
   public static void number5() {
-    System.out.println(onlineShop(25, "sabtu", Set.of(26, 29)));
+    Scanner sc = new Scanner(System.in);
+    String day = null;
+    String tryAgain = null;
+    int date = 0;
+    HashSet<Integer> holidays = new HashSet<>();
+
+    while (true) {
+      while (true) {
+        System.out.print("Masukkan hari pesan\t\t: ");
+        day = sc.nextLine().trim().toLowerCase();
+        if (
+          day.equals("senin") ||
+          day.equals("selasa") ||
+          day.equals("rabu") ||
+          day.equals("kamis") ||
+          day.equals("jumat") ||
+          day.equals("sabtu") ||
+          day.equals("minggu")
+          ) 
+        {
+          break;
+        } else {
+          System.out.println("Invalid input!!!\n");
+          continue;
+        }
+      }
+
+      while (true) {
+        System.out.print("Masukkan tanggal pesan\t\t: ");
+        String dateString = sc.nextLine();
+        if (!dateString.matches("^(0[1-9]|[12]\\d|3[01])$")) {
+          System.out.println("Invalid input!!!\n");
+          continue;
+        } else {
+          date = Integer.parseInt(dateString);
+          break;
+        }
+      }
+
+      while (holidays.size() < 31) {
+        System.out.print("Masukkan hari libur nasional (press q to quit)\t: ");
+        String holidayDate = sc.nextLine();
+        if (!holidayDate.matches("^(0[1-9]|[12]\\d|3[01])|q$")) {
+          System.out.println("Invalid input!!!\n");
+          continue;
+        } else {
+          if (holidayDate.matches("^(0[1-9]|[12]\\d|3[01])$")) {
+            holidays.add(Integer.valueOf(holidayDate));
+            continue;
+          } else if (holidayDate.equals("q")) {
+            break;
+          } else {
+            System.out.println("Invalid input!!!\n");
+            continue;
+          }
+        }
+      }
+
+      System.out.println(onlineShop(date, day, holidays));
+
+      while (true) {
+        System.out.print("Pesan lagi? (Y/n)\t: ");
+        tryAgain = sc.nextLine();
+        if (!(tryAgain.trim().equalsIgnoreCase("y") || tryAgain.trim().equalsIgnoreCase("n"))) {
+          System.out.println("Invalid Input!!!\n");
+          continue;
+        } else {
+          break;
+        }
+      }
+
+      if (tryAgain.trim().equalsIgnoreCase("n")) {
+				break;
+			} else {
+        continue;
+      }
+    }
+
+    sc.close();
   }
 }
