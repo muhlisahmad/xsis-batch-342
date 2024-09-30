@@ -1,5 +1,9 @@
 // import warmup1.*;
 // import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 import dailyQuest.*;
@@ -161,8 +165,23 @@ public class Main {
 
     // Daily08.simpleCalculator();
 
-    Daily08.planeFigures();
+    // Daily08.planeFigures();
 
+    Daily09.number3();
+
+    // LocalDateTime before = LocalDateTime.now();
+    // LocalDateTime after = before.plusMinutes(6).plusHours(2).plusDays(2);
+
+    // // System.out.println(after.compareTo(before));
+    // System.out.println(ChronoUnit.HOURS.between(before, after));
+    // System.out.println(18%24);
+    
+    // try {
+    //   LocalDateTime dateTime = LocalDateTime.parse("2024-09-31T02:00:32");
+    //   System.out.println(dateTime);
+    // } catch (DateTimeException e) {
+    //   System.out.println(e.getCause().getMessage());
+    // }
     // scannerInput.close();
   }
 }
