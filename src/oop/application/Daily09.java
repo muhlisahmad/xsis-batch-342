@@ -77,7 +77,7 @@ public class Daily09 {
       nextMonth = true;
     }
 
-    return nextMonth ? "tanggal " + endDate % 31 + " di bulan selanjutnya" : "tanggal " + endDate + 1;
+    return nextMonth ? "tanggal " + endDate % 31 + " di bulan selanjutnya" : "tanggal " + (endDate + 1);
   }
 
   public static void number5() {
