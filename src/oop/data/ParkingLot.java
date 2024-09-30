@@ -34,7 +34,7 @@ public class ParkingLot {
     return checkInDateTime;
   }
 
-  public Long getPrice() {
+  public long getPrice() {
     return price;
   }
 }
