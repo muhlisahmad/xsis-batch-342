@@ -77,7 +77,7 @@ public class Daily09 {
       nextMonth = true;
     }
 
-    return nextMonth ? "tanggal " + endDate % 31 + " di bulan selanjutnya" : "tanggal " + endDate;
+    return nextMonth ? "tanggal " + endDate % 31 + " di bulan selanjutnya" : "tanggal " + endDate + 1;
   }
 
   public static void number5() {
@@ -89,7 +89,7 @@ public class Daily09 {
 
     while (true) {
       while (true) {
-        System.out.print("Masukkan hari pesan\t\t: ");
+        System.out.print("Masukkan hari pesan\t\t\t\t: ");
         day = sc.nextLine().trim().toLowerCase();
         if (
           day.equals("senin") ||
@@ -109,7 +109,7 @@ public class Daily09 {
       }
 
       while (true) {
-        System.out.print("Masukkan tanggal pesan\t\t: ");
+        System.out.print("Masukkan tanggal pesan\t\t\t\t: ");
         String dateString = sc.nextLine();
         if (!dateString.matches("^(0[1-9]|[12]\\d|3[01])$")) {
           System.out.println("Invalid input!!!\n");
@@ -142,7 +142,7 @@ public class Daily09 {
       System.out.println(onlineShop(date, day, holidays));
 
       while (true) {
-        System.out.print("Pesan lagi? (Y/n)\t: ");
+        System.out.print("Pesan lagi? (Y/n)\t\t\t\t: ");
         tryAgain = sc.nextLine();
         if (!(tryAgain.trim().equalsIgnoreCase("y") || tryAgain.trim().equalsIgnoreCase("n"))) {
           System.out.println("Invalid Input!!!\n");
