@@ -167,7 +167,7 @@ public class Main {
 
     // Daily08.planeFigures();
 
-    Daily09.number3();
+    Daily09.number5();
 
     // LocalDateTime before = LocalDateTime.now();
     // LocalDateTime after = before.plusMinutes(6).plusHours(2).plusDays(2);
