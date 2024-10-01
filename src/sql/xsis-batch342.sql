@@ -123,3 +123,9 @@ insert into public.scores (student_code, exam_code, score) values
 alter table public.lecturers
 alter column name
 set data type varchar(200);
+
+-- 2. Buatlah query untuk menampilkan data berikut:
+--|---------|--------------|--------------------|-------|
+--|M001     |Budi Gunawan  |Teknik Informatika  |Islam  |
+--|---------|--------------|--------------------|-------|
+select * from public.students as s where s.code='M001';
