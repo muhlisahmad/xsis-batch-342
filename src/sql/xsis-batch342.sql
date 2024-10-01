@@ -118,3 +118,8 @@ insert into public.scores (student_code, exam_code, score) values
 ('M002', 'U003', 85),
 ('M004', 'U002', 95),
 ('M005', 'U005', 70);
+
+-- 1. Buatlah query untuk mengubah colum Nama_Dosen dengan type data varchar dengan panjang 200 pada table Dosen
+alter table public.lecturers
+alter column name
+set data type varchar(200);
