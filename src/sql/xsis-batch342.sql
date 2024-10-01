@@ -129,3 +129,10 @@ set data type varchar(200);
 --|M001     |Budi Gunawan  |Teknik Informatika  |Islam  |
 --|---------|--------------|--------------------|-------|
 select * from public.students as s where s.code='M001';
+
+-- 3. Buatlah query untuk menampilkan data mahasiswa yang mengambil jurusan dengan Status Jurusan = Non Aktif
+select s.code, s.name, m.name as major_name
+from public.students as s
+join public.majors m
+on s.major_code = m.code
+where m.status = false;
