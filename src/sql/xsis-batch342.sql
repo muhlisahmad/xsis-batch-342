@@ -55,7 +55,14 @@ create table public.students (
 
 -- Create table scores
 create table public.scores (
+	id serial primary key,
 	student_code char(4),
-	code char(4) primary key,
+	exam_code char(4),
+	foreign key (student_code) references public.students(code)
+		on delete cascade
+		on update cascade,
+	foreign key (exam_code) references public.exams(code)
+		on delete cascade
+		on update cascade,
 	score int not null
 );
