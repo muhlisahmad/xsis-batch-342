@@ -456,3 +456,10 @@ insert into company.employee_position (employee_id, position_id) values
 (3, 3),
 (2, 4),
 (1, 4);
+
+-- 1. Urutkan nama-nama karyawan dan statusnya, diurutkan dari yang paling tua ke yang paling muda
+select b.first_name, b.last_name, b.marital_status, b.dob
+from company.biodata b 
+join company.employee e 
+on e.biodata_id = b.id
+order by b.dob asc;
