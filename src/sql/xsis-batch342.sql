@@ -498,3 +498,47 @@ select
 from company.biodata b 
 join company.employee e
 on e.biodata_id = b.id;
+
+-- 6. Tampilkan nama karyawan, jenis perjalanan dinas, dan total pengeluarannya selama perjalanan dinas tersebut
+create view company.biodata_employee as
+select
+	e.id,
+	e.nip,
+	b.first_name,
+	b.last_name,
+	b.dob,
+	b.pob,
+	b.address,
+	b.marital_status,
+	e.status,
+	e.salary_lama,
+	e.salary_baru
+from company.biodata as b 
+right join company.employee as e 
+on e.biodata_id = b.id;
+
+select 
+	be.id,
+	be.nip,
+	concat(be.first_name || ' ' || be.last_name) as "fullname",
+	tt."name" as "travel_type", 
+	tr.start_date,
+	tr.end_date,
+	sum(ts.item_cost) + tt.travel_fee as "total_cost"
+from company.biodata_employee be 
+join company.travel_request tr 
+on be.id = tr.employee_id
+join company.travel_type tt
+on tr.travel_type_id = tt.id
+join company.travel_settlement ts 
+on tr.id = ts.travel_request_id
+group by 
+	be.id,
+	be.nip,
+	be.first_name,
+	be.last_name,
+	tt."name", 
+	tt.travel_fee,
+	tr.start_date,
+	tr.end_date;
+
