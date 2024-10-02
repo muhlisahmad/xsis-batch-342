@@ -282,7 +282,7 @@ create table company.employee (
 	biodata_id bigint,
 	nip varchar(5) not null,
 	status varchar(10) not null,
-	salary varchar(10) not null,
+	salary int not null,
 	foreign key (biodata_id) references company.biodata(id)
 		on delete cascade
 		on update cascade
@@ -472,3 +472,29 @@ where b.last_name like 'M%';
 -- 3. Buatlah kolom NIP pada table Employee sebagai index
 create index if not exists index_nip
 on company.employee(nip);
+
+-- 4. Buatlah kolom employee_id pada table employee_leave sebagai kolom unique
+-- SKIP
+
+-- 5. Tamplikan fullname, salary_lama, dan salary_baru. dimana salary baru itu sebesar 10% dari salary lama dan ditampilkan dengan kolom alias GajiBaru
+alter table company.employee
+add column if not exists
+	salary_baru int;
+alter table company.employee 
+rename column salary
+to salary_lama;
+
+update company.employee
+set salary_baru = salary_lama + (20 * salary_lama / 100)
+where salary_lama is not null;
+
+alter table company.employee 
+alter column salary_baru set not null; 
+
+select
+	concat(b.first_name || ' ' || b.last_name) as "fullname",
+	e.salary_lama as "GajiLama",
+	e.salary_baru as "GajiBaru"
+from company.biodata b 
+join company.employee e
+on e.biodata_id = b.id;
