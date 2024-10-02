@@ -468,3 +468,7 @@ order by b.dob asc;
 select b.last_name 
 from company.biodata b
 where b.last_name like 'M%';
+
+-- 3. Buatlah kolom NIP pada table Employee sebagai index
+create index if not exists index_nip
+on company.employee(nip);
