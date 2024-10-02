@@ -542,3 +542,11 @@ group by
 	tr.start_date,
 	tr.end_date;
 
+-- 7. Buatkan query untuk menampilkan data karyawan yang belum pernah melakukan perjalanan dinas
+select *
+from company.biodata_employee be 
+where be.id
+not in (
+	select tr.employee_id
+	from company.travel_request tr
+	);
