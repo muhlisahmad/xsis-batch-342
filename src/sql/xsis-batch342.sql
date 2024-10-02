@@ -147,3 +147,6 @@ on e.code = sc.exam_code
 where sc.score >= 80
 and e.status = true;
 
+-- 5. Buatlah query untuk menampilkan data jurusan yang mengandung kata 'sistem'
+select * from public.majors as m 
+where m."name" ilike '%sistem%';
