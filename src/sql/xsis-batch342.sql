@@ -144,9 +144,25 @@ join public.scores as sc
 on sc.student_code = s.code 
 join public.exams as e 
 on e.code = sc.exam_code 
-where sc.score >= 80
+where sc.score > 80
 and e.status = true;
 
 -- 5. Buatlah query untuk menampilkan data jurusan yang mengandung kata 'sistem'
 select * from public.majors as m 
 where m."name" ilike '%sistem%';
+
+-- 6. Buatlah query untuk menampilkan mahasiswa yang mengambil ujian lebih dari 1
+select x.code, s."name", e."name", sc.score 
+from public.students s 
+join (
+	select s.code, count(*)
+	from public.students s 
+	join public.scores sc
+	on sc.student_code = s.code
+	group by s.code
+	having count(*) > 1) as x
+on x.code = s.code 
+join public.scores sc
+on sc.student_code = s.code
+join public.exams e 
+on e.code = sc.exam_code;
