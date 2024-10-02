@@ -463,3 +463,8 @@ from company.biodata b
 join company.employee e 
 on e.biodata_id = b.id
 order by b.dob asc;
+
+-- 2. Tampilkan last name dengan huruf capital dimana last name nya diawali dengan huruf ?M?
+select b.last_name 
+from company.biodata b
+where b.last_name like 'M%';
