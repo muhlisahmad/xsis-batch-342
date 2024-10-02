@@ -193,3 +193,29 @@ on l.major_code = m.code
 join public.lecturer_types lt 
 on lt.code = l.type_code
 where s.code = 'M001';
+
+-- 8. Buatlah query untuk create view dengan menggunakan data pada no. 7, beserta query untuk mengeksekusi view tersebut
+create view sv as
+select
+	s.code as "Student Code",
+	s."name" as "Student Name",
+	m."name" as "Major",
+	r.description as "Religion",
+	l."name" as "Lecturer",
+case
+	when m.status is true then 'Aktif'
+	else 'Tidak Aktif'
+end as "Major Status",
+	lt.description as "Description"
+from public.students s 
+join public.majors m 
+on m.code = s.major_code 
+join public.religions r 
+on r.code = s.religion_code 
+join public.lecturers l 
+on l.major_code = m.code 
+join public.lecturer_types lt 
+on lt.code = l.type_code
+where s.code = 'M001';
+
+select * from sv;
