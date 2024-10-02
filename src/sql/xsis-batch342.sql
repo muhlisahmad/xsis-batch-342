@@ -231,3 +231,130 @@ left join public.scores sc
 on s.code = sc.student_code
 left join public.exams e 
 on e.code = sc.exam_code;
+
+-- Day 2 SQL
+create schema if not exists company;
+
+create table company.position (
+	id bigserial primary key,
+	name varchar(100) not null
+);
+
+create table company.biodata (
+	id bigserial primary key,
+	first_name varchar(20) not null,
+	last_name varchar(30) not null,
+	dob varchar(10) not null,
+	pob varchar(50) not null,
+	address varchar(255) not null,
+	marital_status boolean not null
+);
+
+create table company.departement (
+	id bigserial primary key,
+	name varchar(100) not null
+);
+
+create table company.leave (
+	id bigserial primary key,
+	type varchar(10) not null,
+	name varchar(100) not null
+);
+
+create table company.family (
+	id bigserial primary key,
+	biodata_id bigint,
+	name varchar(100),
+	status varchar(50),
+	foreign key (biodata_id) references company.biodata(id)
+		on delete cascade
+		on update cascade
+);
+
+create table company.travel_type (
+	id bigserial primary key,
+	name varchar(50) not null,
+	travel_fee int not null
+);
+
+create table company.employee (
+	id bigserial primary key,
+	biodata_id bigint,
+	nip varchar(5) not null,
+	status varchar(10) not null,
+	salary varchar(10) not null,
+	foreign key (biodata_id) references company.biodata(id)
+		on delete cascade
+		on update cascade
+);
+
+create table company.employee_position (
+	id bigserial primary key,
+	employee_id bigint,
+	position_id bigint,
+	foreign key (employee_id) references company.employee(id)
+		on delete cascade
+		on update cascade,
+	foreign key (position_id) references company.position(id)
+		on delete cascade
+		on update cascade
+);
+
+create table company.travel_request (
+	id bigserial primary key,
+	employee_id bigint,
+	travel_type_id bigint,
+	start_date date not null,
+	end_date date not null,
+	foreign key (employee_id) references company.employee(id)
+		on delete cascade
+		on update cascade,
+	foreign key (travel_type_id) references company.travel_type(id)
+		on delete cascade
+		on update cascade
+);
+
+create table company.travel_settlement (
+	id bigserial primary key,
+	travel_request_id bigint,
+	item_name varchar(100) not null,
+	item_cost int not null,
+	foreign key (travel_request_id) references company.travel_request(id)
+		on delete cascade
+		on update cascade
+);
+
+create table company.leave_request (
+	id bigserial primary key,
+	employee_id bigint,
+	leave_id bigint,
+	start_date date not null,
+	end_date date not null,
+	reason varchar(255),
+	foreign key (employee_id) references company.employee(id)
+		on delete cascade
+		on update cascade,
+	foreign key (leave_id) references company.leave(id)
+		on delete cascade
+		on update cascade
+);
+
+create table company.employee_leave (
+	id bigserial primary key,
+	employee_id bigint,
+	period varchar(4) not null,
+	regular_quote int not null,
+	foreign key (employee_id) references company.employee(id)
+		on delete cascade
+		on update cascade
+);
+
+create table company.contact_person (
+	id bigserial primary key,
+	biodata_id bigint,
+	type varchar(5) not null,
+	contact varchar(100) not null,
+	foreign key (biodata_id) references company.biodata(id)
+		on delete cascade
+		on update cascade
+);
