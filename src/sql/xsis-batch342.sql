@@ -219,3 +219,15 @@ on lt.code = l.type_code
 where s.code = 'M001';
 
 select * from sv;
+
+-- 9. Buatlah query untuk menampilkan data mahasiswa beserta nilainya (mahasiswa yang tidak punya nilai juga ditampilkan)
+select 
+	s.code,
+	s."name" as "student name",
+	coalesce(e."name", '-') as "exams",
+	coalesce(sc.score, 0)
+from public.students s 
+left join public.scores sc
+on s.code = sc.student_code
+left join public.exams e 
+on e.code = sc.exam_code;
