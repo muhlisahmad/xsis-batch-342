@@ -133,6 +133,17 @@ select * from public.students as s where s.code='M001';
 -- 3. Buatlah query untuk menampilkan data mahasiswa yang mengambil jurusan dengan Status Jurusan = Non Aktif
 select s.code, s.name, m.name as major_name
 from public.students as s
-join public.majors m
+join public.majors as m
 on s.major_code = m.code
 where m.status = false;
+
+-- 4. Buatlah query untuk menampilkan data mahasiswa dengan nilai diatas 80 untuk ujian dengan Status Ujian = aktif
+select s.code, s.name, e.name, sc.score 
+from public.students as s
+join public.scores as sc
+on sc.student_code = s.code 
+join public.exams as e 
+on e.code = sc.exam_code 
+where sc.score >= 80
+and e.status = true;
+
