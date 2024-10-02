@@ -166,3 +166,30 @@ join public.scores sc
 on sc.student_code = s.code
 join public.exams e 
 on e.code = sc.exam_code;
+
+-- 7. Buatlah query untuk menampilkan data seperti berikut:
+-- |===================|=================|======================|==========|================================|===============|===============|
+-- |Student Code	   |Student Name	 |Major	  				|Religion  |Lecturer						|Major Status	|Description	|
+-- |M001			   |Budi Gunawan	 |Teknik Informatika	|Islam	   |Prof. Dr. Retno Wahyuningsih	|Aktif			|Honorer		|
+-- |===================|=================|======================|==========|================================|===============|===============|
+select
+	s.code as "Student Code",
+	s."name" as "Student Name",
+	m."name" as "Major",
+	r.description as "Religion",
+	l."name" as "Lecturer",
+case
+	when m.status is true then 'Aktif'
+	else 'Tidak Aktif'
+end as "Major Status",
+	lt.description as "Description"
+from public.students s 
+join public.majors m 
+on m.code = s.major_code 
+join public.religions r 
+on r.code = s.religion_code 
+join public.lecturers l 
+on l.major_code = m.code 
+join public.lecturer_types lt 
+on lt.code = l.type_code
+where s.code = 'M001';
