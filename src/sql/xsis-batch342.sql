@@ -600,3 +600,19 @@ join (
 	where cp.type = 'PHONE'
 	) as phone
 on phone.biodata_id = be.id;
+
+-- 9. Tampilkan alasan cuti yang sering diajukan karyawan
+select rc.reason
+from (
+	select lr.reason, count(lr.reason) 
+	from company.leave_request lr
+	group by lr.reason
+) as rc
+where rc.count = (
+	select max(count)
+	from (
+		select lr.reason, count(lr.reason) 
+		from company.leave_request lr
+		group by lr.reason
+	)
+);
