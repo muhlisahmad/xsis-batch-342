@@ -455,7 +455,8 @@ insert into company.employee_position (employee_id, position_id) values
 (4, 2),
 (3, 3),
 (2, 4),
-(1, 4);
+(1, 4),
+(6, 4);
 
 -- 1. Urutkan nama-nama karyawan dan statusnya, diurutkan dari yang paling tua ke yang paling muda
 select b.first_name, b.last_name, b.marital_status, b.dob
@@ -786,3 +787,21 @@ join (
 	where el."period" = '2020'
 ) as el_2020
 on el_2020.employee_id = be.id;
+
+-- 18. Tampilkan fullname, jabatan, usia, dan jumlah anak dari masing-masing karyawan saat ini
+select 
+	e.nip,
+	concat(b.first_name, ' ', b.last_name) as "fullname",
+	p."name" as "position",
+	extract ('year' from age(now(), b.dob)) as "age",
+	count(f_children.id) as "children"
+from company.biodata b 
+join company.employee e 
+on e.biodata_id = b.id
+join company.employee_position ep
+on ep.employee_id = e.id
+join company."position" p 
+on p.id = ep.position_id
+left join (select * from company."family" f where f.status = 'Anak') as f_children
+on f_children.biodata_id = b.id
+group by e.nip, b.first_name, b.last_name, p."name", b.dob;
