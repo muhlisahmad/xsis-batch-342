@@ -713,3 +713,22 @@ where not exists (
 	from company.employee e 
 	where e.biodata_id = b.id 
 );
+
+-- 15. Tampilkan sisa cuti tahun 2020 yang dimiliki oleh karyawan
+select
+	be.nip,
+	be.full_name,
+	el."period",
+	el.regular_quota - lc.count as regular
+from company.employee_leave el
+join company.biodata_employee be
+on be.id = el.employee_id
+join (
+	select distinct on(lr.employee_id) employee_id, count(lr.employee_id)
+	from company.leave_request lr
+	where lr.start_date between '2020-01-01' and '2020-12-31'
+	and lr.leave_id = 1
+	group by lr.employee_id
+) as lc
+on lc.employee_id = be.id
+where el."period" = '2020';
