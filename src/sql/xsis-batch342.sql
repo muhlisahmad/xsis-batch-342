@@ -628,4 +628,25 @@ where rc.count = (
 );
 
 -- 10. Tampilkan last name, bonus, dan salary + bonus untuk karyawan yang namanya mengandung minimal salah satu huruf vokal (a,i,u,e,o) dimana bonus itu sebesar 20% dari salary
-select * from company.biodata_employee be;
+select
+	be.last_name,
+	be.salary,
+	case 
+		when be.full_name ilike '%a%'
+			or be.full_name ilike '%i%'
+			or be.full_name ilike '%u%'
+			or be.full_name ilike '%e%'
+			or be.full_name ilike '%o%'
+		then 20 * be.salary / 100
+		else 0
+	end as "bonus",
+	case
+		when be.full_name ilike '%a%'
+			or be.full_name ilike '%i%'
+			or be.full_name ilike '%u%'
+			or be.full_name ilike '%e%'
+			or be.full_name ilike '%o%'
+		then be.salary + (20 * be.salary / 100)
+		else be.salary
+	end as "total"
+from company.biodata_employee be;
