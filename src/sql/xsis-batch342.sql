@@ -665,3 +665,30 @@ group by be.id,
 	be.marital_status,
 	be.status,
 	be.salary;
+	
+-- 12. Tambahkan 3 orang pelamar, dimana 2 di antaranya diterima sebagai karyawan kontrak
+-- dan 1 nya lagi tidak diterima sebagai karyawan
+-- Lalu tampilkan semua biodata berupa fullname, nip, status karyawan dan salary
+select * from company.biodata b;
+insert into company.biodata (
+		first_name, last_name, dob,
+		pob, address, marital_status
+		) values
+('Walter', 'White', '1958-09-07', 'New Mexico', '308 Negra Arroyo Lane, Albuquerque, New Mexico', true),
+('Tyler', 'Durden', '1970-10-23', 'Bradford', '537 Paper Street, Bradford, England', false),
+('Bruce', 'Wayne', '1972-02-19', 'Gotham', '1007 Mountain Drive, Gotham City, New Jersey', false);
+
+insert into company.employee (biodata_id, nip, status, salary) values
+(7, 'NX007', 'Kontrak', 13000000),
+(9, 'NX008', 'Kontrak', 13000000);
+
+select * from company.biodata_employee be;
+
+select 
+	e.nip,
+	concat(b.first_name, ' ', b.last_name) as "fullname",
+	e.status,
+	e.salary 
+from company.employee e 
+join company.biodata b 
+on b.id = e.biodata_id;
