@@ -506,6 +506,7 @@ select
 	e.nip,
 	b.first_name,
 	b.last_name,
+	concat(b.first_name || ' ' || b.last_name) as "full_name", 
 	b.dob,
 	b.pob,
 	b.address,
@@ -550,3 +551,30 @@ not in (
 	select tr.employee_id
 	from company.travel_request tr
 	);
+	
+-- 8. Tampilkan nama lengkap karyawan, jenis cuti, alasan cuti, durasi cuti, dan nomor telepon yang bisa dihubungi untuk masing-masing karyawan yang mengajukan cuti
+select 
+	be.id,
+	be.nip, 
+	be.full_name,
+	be.status, 
+	lr.start_date,
+	lr.end_date,
+	l."type",
+	phone.contact,
+	lr.reason 
+from company.biodata_employee be
+join company.leave_request lr 
+on lr.employee_id = be.id
+join company.leave l 
+on l.id = lr.leave_id
+join (
+	select * 
+	from company.contact_person cp 
+	where cp.type = 'PHONE'
+	) as phone
+on phone.biodata_id = be.id;
+--group by phone.contact;
+
+select * from company.contact_person cp;
+select * from company.biodata_employee be;
