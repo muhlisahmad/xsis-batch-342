@@ -692,3 +692,15 @@ select
 from company.employee e 
 join company.biodata b 
 on b.id = e.biodata_id;
+
+-- 13. Tampilkan fullname pelamar yang tanggal lahirnya antara 01-01-1991 s/d 31-12-1991
+select 
+	concat(b.first_name, ' ', b.last_name) as "fullname",
+	b.dob,
+	b.pob,
+	b.address,
+	b.marital_status
+from company.biodata b 
+where b.dob 
+	between '1991-01-01'
+	and '1991-12-31';
