@@ -678,11 +678,25 @@ insert into company.biodata (
 ('Tyler', 'Durden', '1970-10-23', 'Bradford', '537 Paper Street, Bradford, England', false),
 ('Bruce', 'Wayne', '1972-02-19', 'Gotham', '1007 Mountain Drive, Gotham City, New Jersey', false);
 
+insert into company.contact_person (biodata_id, "type", contact) values
+	(7, 'MAIL', 'heisenberg@gmail.com'),
+	(7, 'PHONE', '087792382928'),
+	(7, 'PHONE', '085383919739'),
+	(9, 'MAIL', 'wayne@wayne-ent.com'),
+	(9, 'PHONE', '082393910284');
+
 insert into company.employee (biodata_id, nip, status, salary) values
 (7, 'NX007', 'Kontrak', 13000000),
 (9, 'NX008', 'Kontrak', 13000000);
 
-select * from company.biodata_employee be;
+insert into company.employee_position (employee_id, position_id) values
+	(7, 4),
+	(8, 4);
+
+insert into company."family" (biodata_id, name, status) values
+	(7, 'Skyler White', 'Istri'),
+	(7, 'Walter White ''Flynn'' Jr.', 'Anak'),
+	(7, 'Holly White', 'Anak');
 
 select 
 	e.nip,
