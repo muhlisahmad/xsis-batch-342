@@ -770,3 +770,19 @@ group by
 	tt.travel_fee,
 	tr.start_date,
 	tr.end_date;
+
+-- 17. Tambahkan data cuti tahun 2021 terhadap semua karyawan (termasuk karyawan baru yang sudah ditambahkan pada soal sebelumnya).
+-- Lalu hitung jumlah cuti yang sudah diambil pada tahun 2020 dari masing-masing karyawan
+-- Constraint : Data cuti karyawan baru tidak perlu ditampilkan
+insert into company.employee_leave (employee_id, "period", regular_quota) values
+	(7, '2021', 12),
+	(8, '2021', 12);
+
+select be.nip, be.full_name, be.status, el_2020."period", el_2020.regular_quota
+from company.biodata_employee be 
+join (
+	select *
+	from company.employee_leave el 
+	where el."period" = '2020'
+) as el_2020
+on el_2020.employee_id = be.id;
