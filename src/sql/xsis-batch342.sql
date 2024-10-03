@@ -732,3 +732,27 @@ join (
 ) as lc
 on lc.employee_id = be.id
 where el."period" = '2020';
+
+-- 16. Tampilkan selisih antara total item cost dengan total travel fee untuk masing-masing karyawan
+select 
+	be.nip,
+	be.full_name,
+	tt."name" as "travel_type", 
+	age(tr.end_date, tr.start_date) as duration,
+	sum(ts.item_cost) as "total_cost",
+	sum(tt.travel_fee) as "total_fee",
+	sum(ts.item_cost) - sum(tt.travel_fee) as "cost_diff"
+from company.biodata_employee be 
+join company.travel_request tr 
+on be.id = tr.employee_id
+join company.travel_type tt
+on tr.travel_type_id = tt.id
+join company.travel_settlement ts 
+on tr.id = ts.travel_request_id
+group by 
+	be.nip,
+	be.full_name,
+	tt."name", 
+	tt.travel_fee,
+	tr.start_date,
+	tr.end_date;
