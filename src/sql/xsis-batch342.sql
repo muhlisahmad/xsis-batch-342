@@ -650,3 +650,18 @@ select
 		else be.salary
 	end as "total"
 from company.biodata_employee be;
+
+-- 11. Tampilkan data lengkap karyawan dan rata-rata gaji setahun untuk masing-masing dari mereka
+select *, avg(be.salary) as avg_salary
+from company.biodata_employee be
+group by be.id,
+	be.nip,
+	be.first_name,
+	be.last_name,
+	be.full_name,
+	be.dob,
+	be.pob,
+	be.address,
+	be.marital_status,
+	be.status,
+	be.salary;
