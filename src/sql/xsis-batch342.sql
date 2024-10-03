@@ -477,6 +477,8 @@ on company.employee(nip);
 -- SKIP
 
 -- 5. Tamplikan fullname, salary_lama, dan salary_baru. dimana salary baru itu sebesar 10% dari salary lama dan ditampilkan dengan kolom alias GajiBaru
+
+-- versi meng-alter table
 alter table company.employee
 add column if not exists
 	salary_baru int;
@@ -496,6 +498,15 @@ select
 	e.salary_lama as "GajiLama",
 	e.salary_baru as "GajiBaru"
 from company.biodata b 
+join company.employee e 
+on e.biodata_id = b.id;
+
+-- versi tidak meng-alter table
+select
+	concat(b.first_name || ' ' || b.last_name) as "fullname",
+	e.salary as "GajiLama",
+	e.salary + (20 * salary / 100) as "GajiBaru"
+from company.biodata b 
 join company.employee e
 on e.biodata_id = b.id;
 
@@ -512,8 +523,7 @@ select
 	b.address,
 	b.marital_status,
 	e.status,
-	e.salary_lama,
-	e.salary_baru
+	e.salary
 from company.biodata as b 
 right join company.employee as e 
 on e.biodata_id = b.id;
@@ -616,3 +626,6 @@ where rc.count = (
 		group by lr.reason
 	)
 );
+
+-- 10. Tampilkan last name, bonus, dan salary + bonus untuk karyawan yang namanya mengandung minimal salah satu huruf vokal (a,i,u,e,o) dimana bonus itu sebesar 20% dari salary
+select * from company.biodata_employee be;
