@@ -704,3 +704,12 @@ from company.biodata b
 where b.dob 
 	between '1991-01-01'
 	and '1991-12-31';
+	
+-- 14. Tampilkan nama-nama pelamar yang tidak diterima sebagai karyawan
+select *
+from company.biodata b 
+where not exists (
+	select *
+	from company.employee e 
+	where e.biodata_id = b.id 
+);
