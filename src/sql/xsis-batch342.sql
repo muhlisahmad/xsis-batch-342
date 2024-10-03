@@ -805,3 +805,8 @@ on p.id = ep.position_id
 left join (select * from company."family" f where f.status = 'Anak') as f_children
 on f_children.biodata_id = b.id
 group by e.nip, b.first_name, b.last_name, p."name", b.dob;
+
+-- 19. Hitung ada berapa karyawan yang sudah menikah dan yang tidak menikah
+select be.marital_status, count(be.marital_status)
+from company.biodata_employee be
+group by be.marital_status;
