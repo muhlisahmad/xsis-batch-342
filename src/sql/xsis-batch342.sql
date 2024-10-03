@@ -553,6 +553,32 @@ not in (
 	);
 	
 -- 8. Tampilkan nama lengkap karyawan, jenis cuti, alasan cuti, durasi cuti, dan nomor telepon yang bisa dihubungi untuk masing-masing karyawan yang mengajukan cuti
+
+-- versi distinct on (nomor telp cukup 1 saja)
+select 
+	be.id,
+	be.nip, 
+	be.full_name,
+	be.status, 
+	lr.start_date,
+	lr.end_date,
+	l."type",
+	phone.contact,
+	lr.reason 
+from company.biodata_employee be
+join company.leave_request lr 
+on lr.employee_id = be.id
+join company.leave l 
+on l.id = lr.leave_id
+join (
+	select distinct on (cp.biodata_id) * 
+	from company.contact_person cp 
+	where cp.type = 'PHONE'
+	order by cp.biodata_id
+	) as phone
+on phone.biodata_id = be.id;
+
+-- versi tetap tampilkan jika memiliki nomor telp lebih dari 1
 select 
 	be.id,
 	be.nip, 
@@ -574,7 +600,3 @@ join (
 	where cp.type = 'PHONE'
 	) as phone
 on phone.biodata_id = be.id;
---group by phone.contact;
-
-select * from company.contact_person cp;
-select * from company.biodata_employee be;
