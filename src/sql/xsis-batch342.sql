@@ -810,3 +810,111 @@ group by e.nip, b.first_name, b.last_name, p."name", b.dob;
 select be.marital_status, count(be.marital_status)
 from company.biodata_employee be
 group by be.marital_status;
+
+-- 20. Jika digabungkan antara cuti dan perjalanan dinas,
+-- berapa hari Raya tidak berada di kantor pada tahun 2020?
+--select age('2020-01-02', '2020-01-01') + age('2020-05-23', '2020-05-20');
+
+with leave_days as (
+	select 
+--		be.full_name,
+		lr.employee_id,
+		lr.start_date,
+		lr.end_date,
+		age(lr.end_date, lr.start_date) + interval '1 day' as leave_duration
+	from company.leave_request lr 
+	join company.biodata_employee be 
+	on lr.employee_id = be.id
+	where be.full_name ilike '%raya%'
+),
+travel_days as (
+	select
+		tr.employee_id,
+		tr.start_date,
+		tr.end_date,
+		age(tr.end_date, tr.start_date) + interval '1 day' as travel_duration
+	from company.travel_request tr 
+	join company.biodata_employee be 
+	on tr.employee_id = be.id
+	where be.full_name ilike '%raya%'
+)
+select 
+--	leave_days.start_date as leave_start_date,
+--	leave_days.end_date as leave_end_date,
+	sum(leave_days.leave_duration) as total_leave_duration,
+	sum(travel_days.travel_duration) as total_leave_duration,
+	sum(leave_days.leave_duration) + sum(travel_days.travel_duration) as total_duration
+from leave_days
+full outer join travel_days
+on leave_days.employee_id = travel_days.employee_id;
+--group by
+--	leave_days.start_date,
+--	leave_days.end_date;
+
+select
+	*
+--	lr.start_date as "leave_start_date",
+--	lr.end_date as "leave_end_date",
+--	tr.start_date as "travel_start_date",
+--	tr.end_date as "travel_end_date"
+from company.leave_request lr 
+join company.travel_request tr 
+on tr.employee_id = lr.employee_id;
+where tr.employee_id = 1;
+
+select 
+	raya_lr.nip,
+	raya_lr.full_name,
+	tr.start_date as "travel_start_date",
+	tr.end_date as "travel_end_date",
+	raya_lr.start_date as "leave_start_date",
+	raya_lr.end_date as "leave_end_date"
+from company.travel_request tr
+right join (
+	select *
+	from company.biodata_employee be 
+	join company.leave_request lr 
+	on lr.employee_id = be.id
+	where be.full_name ilike '%raya%'
+) as raya_lr
+on raya_lr.employee_id = tr.employee_id;
+
+
+select
+	be.nip,
+	be.full_name,
+	be.status,
+	be.salary,
+	lr.start_date as "leave_start_date",
+	lr.end_date as "leave_end_date",
+--	tr.start_date as "travel_start_date",
+--	tr.end_date as "travel_end_date",
+	lr.reason 
+from company.biodata_employee be 
+join company.leave_request lr 
+on be.id = lr.employee_id
+--join company.travel_request tr 
+--on tr.employee_id = be.id 
+where be.full_name ilike '%raya%';
+
+select * from company.leave_request lr;
+select * from company.travel_request tr;
+
+select
+--	*
+	raya.full_name
+--	age(tr.end_date, tr.start_date) + age(lr.end_date, lr.start_date) as "duration"
+--	tr.start_date as "travel_start_date",
+--	tr.end_date as "travel_end_date",
+--	lr.start_date as "leave_start_date",
+--	lr.end_date as "leave_end_date"
+from company.travel_request tr
+right join (
+	select *
+	from company.biodata_employee be
+	where be.full_name ilike '%raya%'
+) as raya
+on tr.employee_id = raya.id
+left join company.leave_request lr 
+on lr.employee_id = raya.id;
+group by raya.full_name;
