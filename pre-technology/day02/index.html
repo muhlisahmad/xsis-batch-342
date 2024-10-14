@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Simple Form</title>
+</head>
+<body>
+  <header>
+    <h1>Epstein's List Registration</h1>
+  </header>
+  <main class="form-container">
+    <form id="registrationForm">
+      <section class="form-group">
+        <label for="fullname">
+          <span>Full Name</span>
+          <input class="input-field" type="text" name="fullname" id="fullname">
+        </label>
+      </section>
+      <section class="form-group">
+        <label for="email">
+          <span>Email</span>
+          <input class="input-field" type="email" name="email" id="email">
+        </label>
+      </section>
+      <section class="form-group">
+        <label for="password">
+          <span>Password</span>
+          <input class="input-field" type="password" name="password" id="password">
+        </label>
+      </section>
+      <section class="form-group">
+        <span>Gender</span>
+        <div class="radio-group">
+          <label for="male">
+            <input type="radio" name="gender" id="male" value="male">
+            <span>Male</span>
+          </label>
+          <label for="female">
+            <input type="radio" name="gender" id="female" value="female">
+            <span>Female</span>
+          </label>
+          <label for="other">
+            <input type="radio" name="gender" id="other" value="other">
+            <span>Other</span>
+          </label>
+        </div>
+      </section>
+      <section class="form-group">
+        <span>Known Languages</span>
+        <div class="checkbox-group">
+          <label for="english">
+            <input type="checkbox" name="languages" id="english" value="english">
+            <span>English</span>
+          </label>
+          <label for="spanish">
+            <input type="checkbox" name="languages" id="spanish" value="spanish">
+            <span>Spanish</span>
+          </label>
+          <label for="french">
+            <input type="checkbox" name="languages" id="french" value="french">
+            <span>French</span>
+          </label>
+          <label for="german">
+            <input type="checkbox" name="languages" id="german" value="german">
+            <span>German</span>
+          </label>
+          <label for="mandarin">
+            <input type="checkbox" name="languages" id="mandarin" value="mandarin">
+            <span>Mandarin</span>
+          </label>
+        </div>
+      </section>
+      <section class="form-group">
+        <label for="country">
+          <span>Country</span>
+          <select name="country" id="country" class="input-field">
+            <option value="usa">USA</option>
+            <option value="uk">UK</option>
+            <option value="canada">Canada</option>
+            <option value="australia">Australia</option>
+            <option value="india">India</option>
+            <option value="spain">Spain</option>
+            <option value="french">French</option>
+            <option value="germany">Germany</option>
+            <option value="china">China</option>
+            <option value="japan">Japan</option>
+          </select>
+        </label>
+      </section>
+      <section class="form-group">
+        <label for="reason">
+          <span>Reason</span>
+          <textarea class="input-field" name="reason" id="reason"></textarea>
+        </label>
+      </section>
+      <section class="form-group button-group">
+        <button type="submit" class="submit-button">Submit</button>
+      </section>
+    </form>
+  </main>
+  <div class="modal" id="dataModal">
+    <div class="modal-content">
+      <h2>Registration Details</h2>
+      <div id="modalBody"></div>
+      <button id="closeModal" class="close-button">Close</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  </body>
+</html>
