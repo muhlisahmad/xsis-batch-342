@@ -1,0 +1,18 @@
+package com.xsis.master.crud.xsis_master_crud.repositories;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.xsis.master.crud.xsis_master_crud.entities.Category;
+
+@Repository
+public interface CategoryRepository extends JpaRepository<Category, Long> {
+  @Query(value = "select * from master.categories where deleted_at is null", nativeQuery = true)
+  List<Category> findAllCategories();
+
+  @Query(value = "select * from master.categories where deleted_at is null and slug = ?1", nativeQuery = true)
+  Category findBySlug(String slug);
+}
