@@ -1,5 +1,6 @@
 package com.xsis.master.crud.xsis_master_crud.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,15 @@ public class ProductServiceImpl implements ProductService{
       return productRepository.save(checkProduct);
     }
   }
-  
+
+  @Override
+  public Product deleteProductBySlug(String slug) {
+    Product product = productRepository.findBySlug(slug);
+    if (product == null) {
+      return null;
+    } else {
+      product.setDeletedAt(LocalDateTime.now());
+      return productRepository.save(product);
+    }
+  }
 }

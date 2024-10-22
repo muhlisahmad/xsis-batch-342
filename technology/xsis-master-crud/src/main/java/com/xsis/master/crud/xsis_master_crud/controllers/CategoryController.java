@@ -15,6 +15,7 @@ import com.xsis.master.crud.xsis_master_crud.services.CategoryService;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -122,6 +123,31 @@ public class CategoryController {
         data.put("status", "success");
         data.put("data", category);
         return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
+      }
+    } catch (Exception e) {
+      data.put("code", 500);
+      data.put("status", "error");
+      data.put("error", e);
+      data.put("stack", e.getStackTrace().toString());
+      return new ResponseEntity<>(data, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @DeleteMapping("/{slug}")
+  public ResponseEntity<?> deleteCategoryBySlug(@PathVariable String slug) {
+    LinkedHashMap<String, Object> data = new LinkedHashMap<>();
+    try {
+      Category category = categoryService.deleteCategoryBySlug(slug);
+      if (category == null) {
+        data.put("code", 404);
+        data.put("status", "failed");
+        data.put("message", "Category Data Not Found");
+        return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
+      } else {
+        data.put("code", 200);
+        data.put("status", "success");
+        data.put("data", category);
+        return new ResponseEntity<>(data, HttpStatus.OK);
       }
     } catch (Exception e) {
       data.put("code", 500);

@@ -1,5 +1,6 @@
 package com.xsis.master.crud.xsis_master_crud.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,17 @@ public class CategoryServiceImpl implements CategoryService {
     } else {
       category.setName(categoryRequest.getName());
       category.setSlug(categoryRequest.getSlug());
+      return categoryRepository.save(category);
+    }
+  }
+
+  @Override
+  public Category deleteCategoryBySlug(String slug) {
+    Category category = categoryRepository.findBySlug(slug);
+    if (category == null) {
+      return null;
+    } else {
+      category.setDeletedAt(LocalDateTime.now());
       return categoryRepository.save(category);
     }
   }

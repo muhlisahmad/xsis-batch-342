@@ -10,4 +10,5 @@ public interface CategoryService {
   Category findCategoryBySlug(String slug);
   Category createNewCategory(CategoryRequest categoryData);
   Category updateCategoryBySlug(String slug, CategoryRequest categoryRequest);
+  Category deleteCategoryBySlug(String slug);
 }

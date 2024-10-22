@@ -10,4 +10,5 @@ public interface VariantService {
   Variant findVariantBySlug(String slug);
   Variant createNewVariant(VariantRequest variantData);
   Variant updateVariantBySlug(String slug, VariantRequest variantData);
+  Variant deleteVariantBySlug(String slug);
 }

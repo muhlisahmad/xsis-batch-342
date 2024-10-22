@@ -1,5 +1,6 @@
 package com.xsis.master.crud.xsis_master_crud.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,17 @@ public class VariantServiceImpl implements VariantService {
       checkVariant.setPrice(variantData.getPrice());
       checkVariant.setStock(variantData.getStock());
       return variantRepository.save(checkVariant);
+    }
+  }
+
+  @Override
+  public Variant deleteVariantBySlug(String slug) {
+    Variant variant = variantRepository.findBySlug(slug);
+    if (variant == null) {
+      return null;
+    } else {
+      variant.setDeletedAt(LocalDateTime.now());
+      return variantRepository.save(variant);
     }
   }
 }

@@ -10,4 +10,5 @@ public interface ProductService {
   Product findProductBySlug(String slug);
   Product createNewProduct(ProductRequest productData);
   Product updateProductBySlug(String slug, ProductRequest productData);
+  Product deleteProductBySlug(String slug);
 }
