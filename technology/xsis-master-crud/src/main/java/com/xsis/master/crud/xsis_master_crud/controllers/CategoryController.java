@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xsis.master.crud.xsis_master_crud.dtos.requests.NewCategoryRequest;
+import com.xsis.master.crud.xsis_master_crud.dtos.requests.CategoryRequest;
 import com.xsis.master.crud.xsis_master_crud.entities.Category;
 import com.xsis.master.crud.xsis_master_crud.services.CategoryService;
 
@@ -81,7 +81,7 @@ public class CategoryController {
   }
   
   @PostMapping("")
-  public ResponseEntity<?> createNewCategory(@RequestBody NewCategoryRequest categoryReqBody) {
+  public ResponseEntity<?> createNewCategory(@RequestBody CategoryRequest categoryReqBody) {
       LinkedHashMap<String, Object> data = new LinkedHashMap<>();
       try {
         Category category = categoryService.createNewCategory(categoryReqBody);

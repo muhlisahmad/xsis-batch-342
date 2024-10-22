@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.xsis.master.crud.xsis_master_crud.dtos.requests.NewVariantRequest;
+import com.xsis.master.crud.xsis_master_crud.dtos.requests.VariantRequest;
 import com.xsis.master.crud.xsis_master_crud.entities.Product;
 import com.xsis.master.crud.xsis_master_crud.entities.Variant;
 import com.xsis.master.crud.xsis_master_crud.repositories.ProductRepository;
@@ -30,7 +30,7 @@ public class VariantServiceImpl implements VariantService {
   }
 
   @Override
-  public Variant createNewVariant(NewVariantRequest variantData) {
+  public Variant createNewVariant(VariantRequest variantData) {
     Product product = productRepository.findBySlug(variantData.getProduct());
     Variant checkVariant = variantRepository.findBySlug(variantData.getSlug());
     if (checkVariant == null) {

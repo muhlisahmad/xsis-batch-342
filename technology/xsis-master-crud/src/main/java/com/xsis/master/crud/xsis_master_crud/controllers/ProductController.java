@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xsis.master.crud.xsis_master_crud.dtos.requests.NewProductRequest;
+import com.xsis.master.crud.xsis_master_crud.dtos.requests.ProductRequest;
 import com.xsis.master.crud.xsis_master_crud.entities.Product;
 import com.xsis.master.crud.xsis_master_crud.services.ProductService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,7 +77,7 @@ public class ProductController {
   }
 
   @PostMapping("")
-  public ResponseEntity<?> createNewProduct(@RequestBody NewProductRequest productReqBody) {
+  public ResponseEntity<?> createNewProduct(@RequestBody ProductRequest productReqBody) {
       LinkedHashMap<String, Object> data = new LinkedHashMap<>();
       try {
         Product product = productService.createNewProduct(productReqBody);

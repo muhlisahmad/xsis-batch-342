@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.xsis.master.crud.xsis_master_crud.dtos.requests.NewCategoryRequest;
+import com.xsis.master.crud.xsis_master_crud.dtos.requests.CategoryRequest;
 import com.xsis.master.crud.xsis_master_crud.entities.Category;
 import com.xsis.master.crud.xsis_master_crud.repositories.CategoryRepository;
 
@@ -26,7 +26,7 @@ public class CategoryServiceImpl implements CategoryService {
   }
 
   @Override
-  public Category createNewCategory(NewCategoryRequest categoryData) {
+  public Category createNewCategory(CategoryRequest categoryData) {
     Category category = categoryRepository.findBySlug(categoryData.getSlug());
     if (category == null) {
       Category newCategory = new Category(categoryData.getSlug(), categoryData.getName());

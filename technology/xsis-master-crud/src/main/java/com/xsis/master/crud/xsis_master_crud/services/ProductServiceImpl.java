@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.xsis.master.crud.xsis_master_crud.dtos.requests.NewProductRequest;
+import com.xsis.master.crud.xsis_master_crud.dtos.requests.ProductRequest;
 import com.xsis.master.crud.xsis_master_crud.entities.Category;
 import com.xsis.master.crud.xsis_master_crud.entities.Product;
 import com.xsis.master.crud.xsis_master_crud.repositories.CategoryRepository;
@@ -31,7 +31,7 @@ public class ProductServiceImpl implements ProductService{
   }
 
   @Override
-  public Product createNewProduct(NewProductRequest productData) {
+  public Product createNewProduct(ProductRequest productData) {
     Category category = categoryRepository.findBySlug(productData.getCategory());
     Product checkProduct = productRepository.findBySlug(productData.getSlug());
     if (checkProduct == null) {

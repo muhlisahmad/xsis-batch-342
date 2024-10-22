@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xsis.master.crud.xsis_master_crud.dtos.requests.NewVariantRequest;
+import com.xsis.master.crud.xsis_master_crud.dtos.requests.VariantRequest;
 import com.xsis.master.crud.xsis_master_crud.entities.Variant;
 import com.xsis.master.crud.xsis_master_crud.services.VariantService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,7 +76,7 @@ public class VariantController {
   }
 
   @PostMapping("")
-  public ResponseEntity<?> createNewVariant(@RequestBody NewVariantRequest variantReqBody) {
+  public ResponseEntity<?> createNewVariant(@RequestBody VariantRequest variantReqBody) {
     LinkedHashMap<String, Object> data = new LinkedHashMap<>();
     try {
       Variant variant = variantService.createNewVariant(variantReqBody);
