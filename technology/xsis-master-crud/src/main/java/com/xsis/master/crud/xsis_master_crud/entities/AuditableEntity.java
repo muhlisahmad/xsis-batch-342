@@ -13,7 +13,7 @@ import lombok.Data;
 @MappedSuperclass
 public abstract class AuditableEntity {
   @CreationTimestamp
-  @Column(name = "created_at")
+  @Column(name = "created_at", updatable = false)
   private LocalDateTime createdAt;
   
   @UpdateTimestamp
