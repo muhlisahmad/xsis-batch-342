@@ -9,4 +9,5 @@ public interface CategoryService {
   List<Category> findAllCategories();
   Category findCategoryBySlug(String slug);
   Category createNewCategory(CategoryRequest categoryData);
+  Category updateCategoryBySlug(String slug, CategoryRequest categoryRequest);
 }

@@ -36,5 +36,15 @@ public class CategoryServiceImpl implements CategoryService {
     }
   }
 
-  
+  @Override
+  public Category updateCategoryBySlug(String slug, CategoryRequest categoryRequest) {
+    Category category = categoryRepository.findBySlug(slug);
+    if (category == null) {
+      return null;
+    } else {
+      category.setName(categoryRequest.getName());
+      category.setSlug(categoryRequest.getSlug());
+      return categoryRepository.save(category);
+    }
+  }
 }

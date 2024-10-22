@@ -41,4 +41,19 @@ public class ProductServiceImpl implements ProductService{
       return null;
     }
   }
+
+  @Override
+  public Product updateProductBySlug(String slug, ProductRequest productData) {
+    Category category = categoryRepository.findBySlug(productData.getCategory());
+    Product checkProduct = productRepository.findBySlug(slug);
+    if (checkProduct == null) {
+      return null;
+    } else {
+      checkProduct.setCategory(category);
+      checkProduct.setName(productData.getName());
+      checkProduct.setSlug(productData.getSlug());
+      return productRepository.save(checkProduct);
+    }
+  }
+  
 }

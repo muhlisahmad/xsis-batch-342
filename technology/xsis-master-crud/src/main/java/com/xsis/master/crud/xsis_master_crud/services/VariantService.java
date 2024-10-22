@@ -9,4 +9,5 @@ public interface VariantService {
   List<Variant> findAllVariants();
   Variant findVariantBySlug(String slug);
   Variant createNewVariant(VariantRequest variantData);
+  Variant updateVariantBySlug(String slug, VariantRequest variantData);
 }

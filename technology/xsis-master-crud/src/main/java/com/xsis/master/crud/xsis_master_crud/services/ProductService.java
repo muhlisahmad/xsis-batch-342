@@ -9,4 +9,5 @@ public interface ProductService {
   List<Product> findAllProducts();
   Product findProductBySlug(String slug);
   Product createNewProduct(ProductRequest productData);
+  Product updateProductBySlug(String slug, ProductRequest productData);
 }

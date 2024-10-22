@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -91,6 +93,31 @@ public class ProductController {
           data.put("status", "success");
           data.put("data", product);
           return new ResponseEntity<>(data, HttpStatus.CREATED);
+        }
+      } catch (Exception e) {
+        data.put("code", 500);
+        data.put("status", "error");
+        data.put("error", e);
+        data.put("stack", e.getStackTrace().toString());
+        return new ResponseEntity<>(data, HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+  }
+
+  @PutMapping("/{slug}")
+  public ResponseEntity<?> updateProductBySlug(@PathVariable String slug, @RequestBody ProductRequest ProductReqBody) {
+      LinkedHashMap<String, Object> data = new LinkedHashMap<>();
+      try {
+        Product product = productService.updateProductBySlug(slug, ProductReqBody);
+        if (product == null) {
+          data.put("code", 404);
+          data.put("status", "failed");
+          data.put("message", "Cannot Find The Given Product");
+          return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
+        } else {
+          data.put("code", 202);
+          data.put("status", "success");
+          data.put("data", product);
+          return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
         }
       } catch (Exception e) {
         data.put("code", 500);

@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -105,4 +107,28 @@ public class CategoryController {
       }
   }
   
+  @PutMapping("/{slug}")
+  public ResponseEntity<?> updateCategoryBySlug(@PathVariable String slug, @RequestBody CategoryRequest categoryReqBody) {
+    LinkedHashMap<String, Object> data = new LinkedHashMap<>();
+    try {
+      Category category = categoryService.updateCategoryBySlug(slug, categoryReqBody);
+      if (category == null) {
+        data.put("code", 404);
+        data.put("status", "failed");
+        data.put("message", "Category Data Not Found");
+        return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
+      } else {
+        data.put("code", 202);
+        data.put("status", "success");
+        data.put("data", category);
+        return new ResponseEntity<>(data, HttpStatus.ACCEPTED);
+      }
+    } catch (Exception e) {
+      data.put("code", 500);
+      data.put("status", "error");
+      data.put("error", e);
+      data.put("stack", e.getStackTrace().toString());
+      return new ResponseEntity<>(data, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 }

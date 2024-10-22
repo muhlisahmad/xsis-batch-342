@@ -40,4 +40,21 @@ public class VariantServiceImpl implements VariantService {
       return null;
     }
   }
+
+  @Override
+  public Variant updateVariantBySlug(String slug, VariantRequest variantData) {
+    Product product = productRepository.findBySlug(variantData.getProduct());
+    Variant checkVariant = variantRepository.findBySlug(slug);
+    if (checkVariant == null) {
+      return null;
+    } else {
+      checkVariant.setProduct(product);
+      checkVariant.setName(variantData.getName());
+      checkVariant.setSlug(variantData.getSlug());
+      checkVariant.setDescription(variantData.getDescription());
+      checkVariant.setPrice(variantData.getPrice());
+      checkVariant.setStock(variantData.getStock());
+      return variantRepository.save(checkVariant);
+    }
+  }
 }
