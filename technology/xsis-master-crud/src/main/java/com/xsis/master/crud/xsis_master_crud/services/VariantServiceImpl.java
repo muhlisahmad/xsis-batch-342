@@ -26,7 +26,7 @@ public class VariantServiceImpl implements VariantService {
     Pageable paging = PageRequest.of(page - 1, limit, Sort.by(Sort.Order.asc("name")));
     Page<Object[]> variantsResult = variantRepository.findAllVariants(paging);
 
-    if (variantsResult == null) {
+    if (variantsResult.isEmpty()) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Variants not found");
     }
 
@@ -56,13 +56,13 @@ public class VariantServiceImpl implements VariantService {
     }
 
     VariantResponseDto variant = new VariantResponseDto(
-      (String) ((Object[]) variantResult)[0],
-      (String) ((Object[]) variantResult)[0],
-      (String) ((Object[]) variantResult)[0],
-      (String) ((Object[]) variantResult)[0],
-      (String) ((Object[]) variantResult)[0],
-      (Long) ((Object[]) variantResult)[0],
-      (Long) ((Object[]) variantResult)[0]
+      (String) ((Object[]) variantResult[0])[0],
+      (String) ((Object[]) variantResult[0])[1],
+      (String) ((Object[]) variantResult[0])[2],
+      (String) ((Object[]) variantResult[0])[3],
+      (String) ((Object[]) variantResult[0])[4],
+      (Long) ((Object[]) variantResult[0])[5],
+      (Long) ((Object[]) variantResult[0])[6]
     );
     return new WebResponse<VariantResponseDto>("success", "Variant retrieved successfully", variant);
   }

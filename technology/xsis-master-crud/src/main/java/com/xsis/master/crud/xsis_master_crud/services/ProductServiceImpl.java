@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService{
     Pageable paging = PageRequest.of(page - 1, limit, Sort.by(Sort.Order.asc("name")));
     Page<Object[]> productsResult = productRepository.findAllProducts(paging);
 
-    if (productsResult == null) {
+    if (productsResult.isEmpty()) {
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Products not found");
     }
 
@@ -48,9 +48,9 @@ public class ProductServiceImpl implements ProductService{
     }
 
     ProductResponseDto product = new ProductResponseDto(
-      ((String[]) productResult[0])[0], 
-      ((String[]) productResult[0])[1], 
-      ((String[]) productResult[0])[2]
+      (String) ((Object[]) productResult[0])[0], 
+      (String) ((Object[]) productResult[0])[1], 
+      (String) ((Object[]) productResult[0])[2]
     );
 
     return new WebResponse<ProductResponseDto>("success", "Product retrieved successfully", product);

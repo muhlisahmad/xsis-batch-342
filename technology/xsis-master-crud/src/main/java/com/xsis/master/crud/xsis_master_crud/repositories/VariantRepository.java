@@ -68,7 +68,7 @@ public interface VariantRepository extends JpaRepository<Variant, Long> {
       join master.categories as c
       on p.category_id = c.id
       where v.deleted_at is null
-      and p.slug = ?1
+      and v.slug = ?1
     """,
     nativeQuery = true
   )
