@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService{
   private ProductRepository productRepository;
 
   @Override
-  public WebResponse<List<ProductResponseDto>> findAllProducts(int page, int limit) {
+  public WebResponse<List<ProductResponseDto>> findAllProducts(Integer page, Integer limit) {
     Pageable paging = PageRequest.of(page - 1, limit, Sort.by(Sort.Order.asc("name")));
     Page<Object[]> productsResult = productRepository.findAllProducts(paging);
 

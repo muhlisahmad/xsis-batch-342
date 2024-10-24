@@ -25,7 +25,7 @@ public class CategoryServiceImpl implements CategoryService {
   private CategoryRepository categoryRepository;
 
   @Override
-  public WebResponse<List<CategoryResponseDto>> findAllCategories(int page, int limit) {
+  public WebResponse<List<CategoryResponseDto>> findAllCategories(Integer page, Integer limit) {
     Pageable paging = PageRequest.of(page - 1, limit, Sort.by(Sort.Order.asc("name")));
     Page<Object[]> categoriesResult = categoryRepository.findAllCategories(paging);
 

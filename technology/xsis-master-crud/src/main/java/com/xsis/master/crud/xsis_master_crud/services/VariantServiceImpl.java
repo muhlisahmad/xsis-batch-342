@@ -22,7 +22,7 @@ public class VariantServiceImpl implements VariantService {
   private VariantRepository variantRepository;
 
   @Override
-  public WebResponse<List<VariantResponseDto>> findAllVariants(int page, int limit) {
+  public WebResponse<List<VariantResponseDto>> findAllVariants(Integer page, Integer limit) {
     Pageable paging = PageRequest.of(page - 1, limit, Sort.by(Sort.Order.asc("name")));
     Page<Object[]> variantsResult = variantRepository.findAllVariants(paging);
 

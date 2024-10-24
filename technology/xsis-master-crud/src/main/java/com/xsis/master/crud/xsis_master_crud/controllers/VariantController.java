@@ -26,8 +26,8 @@ public class VariantController {
     produces = {MediaType.APPLICATION_JSON_VALUE}
   )
   public WebResponse<List<VariantResponseDto>> getAllVariants(
-    @RequestParam(defaultValue = "1") int page,
-    @RequestParam(defaultValue = "10") int limit
+    @RequestParam(defaultValue = "1") Integer page,
+    @RequestParam(defaultValue = "10") Integer limit
   ) {
     return variantService.findAllVariants(page, limit);
   }

@@ -29,8 +29,8 @@ public class CategoryController {
     produces = {MediaType.APPLICATION_JSON_VALUE}
   )
   public WebResponse<List<CategoryResponseDto>> getAllCategory(
-      @RequestParam(defaultValue = "1") int page,
-      @RequestParam(defaultValue = "10") int limit
+      @RequestParam(defaultValue = "1") Integer page,
+      @RequestParam(defaultValue = "10") Integer limit
     ) {
       return categoryService.findAllCategories(page, limit);
   }
