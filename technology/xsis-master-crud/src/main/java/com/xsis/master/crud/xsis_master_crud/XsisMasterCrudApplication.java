@@ -8,9 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.xsis.master.crud.xsis_master_crud.entities.Category;
-import com.xsis.master.crud.xsis_master_crud.entities.Product;
-import com.xsis.master.crud.xsis_master_crud.entities.Variant;
+import com.xsis.master.crud.xsis_master_crud.dtos.responses.CategoryResponseDto;
+import com.xsis.master.crud.xsis_master_crud.dtos.responses.ProductResponseDto;
 import com.xsis.master.crud.xsis_master_crud.repositories.CategoryRepository;
 import com.xsis.master.crud.xsis_master_crud.repositories.ProductRepository;
 import com.xsis.master.crud.xsis_master_crud.repositories.VariantRepository;
@@ -39,173 +38,196 @@ public class XsisMasterCrudApplication {
 	}
 
 	private void seedCategories() {
-		Category electronics = new Category();
-		electronics.setSlug("electronics");
-		electronics.setName("Electronics");
-
-		Category furniture = new Category();
-		furniture.setSlug("furniture");
-		furniture.setName("Furniture");
-
-		Category clothing = new Category();
-		clothing.setSlug("clothing");
-		clothing.setName("Clothing");
-
-		Category beautyProducts = new Category();
-		beautyProducts.setSlug("beauty-products");
-		beautyProducts.setName("Beauty Products");
-
-		Category sports = new Category();
-		sports.setSlug("sports");
-		sports.setName("Sports");
-
-		categoryRepository.saveAll(Arrays.asList(electronics, furniture, clothing, beautyProducts, sports));
+		categoryRepository.insertCategory("Electronics", "electronics");
+		categoryRepository.insertCategory("Furniture", "furniture");
+		categoryRepository.insertCategory("Clothing", "clothing");
+		categoryRepository.insertCategory("Beauty Products", "beauty-products");
+		categoryRepository.insertCategory("Sports", "sports");
 	}
 
 	private void seedProducts() {
-		Category electronics = categoryRepository.findBySlug("electronics");
-		Category furniture = categoryRepository.findBySlug("furniture");
-		Category clothing = categoryRepository.findBySlug("clothing");
-		Category beautyProducts = categoryRepository.findBySlug("beauty-products");
-		Category sports = categoryRepository.findBySlug("sports");
+		Object[] electronicsResult = categoryRepository.findBySlug("electronics");
+		Object[] furnitureResult = categoryRepository.findBySlug("furniture");
+		Object[] clothingResult = categoryRepository.findBySlug("clothing");
+		Object[] beautyProductsResult = categoryRepository.findBySlug("beauty-products");
+		Object[] sportsResult = categoryRepository.findBySlug("sports");
 
-		Product smartphone = new Product();
-		smartphone.setSlug("smartphone");
-		smartphone.setName("Smartphone");
-		smartphone.setCategory(electronics);
+		CategoryResponseDto electronics = new CategoryResponseDto(
+			(String) ((Object[]) electronicsResult[0])[0],
+			(String) ((Object[]) electronicsResult[0])[1]
+		);
+		CategoryResponseDto furniture = new CategoryResponseDto(
+			(String) ((Object[]) furnitureResult[0])[0],
+			(String) ((Object[]) furnitureResult[0])[1]
+		);
+		CategoryResponseDto clothing = new CategoryResponseDto(
+			(String) ((Object[]) clothingResult[0])[0],
+			(String) ((Object[]) clothingResult[0])[1]
+		);
+		CategoryResponseDto beautyProducts = new CategoryResponseDto(
+			(String) ((Object[]) beautyProductsResult[0])[0],
+			(String) ((Object[]) beautyProductsResult[0])[1]
+		);
+		CategoryResponseDto sports = new CategoryResponseDto(
+			(String) ((Object[]) sportsResult[0])[0],
+			(String) ((Object[]) sportsResult[0])[1]
+		);
 
-		Product diningTable = new Product();
-		diningTable.setSlug("dining-table");
-		diningTable.setName("Dining Table");
-		diningTable.setCategory(furniture);
-
-		Product tShirt = new Product();
-		tShirt.setSlug("t-shirt");
-		tShirt.setName("T-Shirt");
-		tShirt.setCategory(clothing);
-
-		Product jeans = new Product();
-		jeans.setSlug("jeans");
-		jeans.setName("Jeans");
-		jeans.setCategory(clothing);
-
-		Product faceCream = new Product();
-		faceCream.setSlug("face-cream");
-		faceCream.setName("Face Cream");
-		faceCream.setCategory(beautyProducts);
-
-		Product basketball = new Product();
-		basketball.setSlug("basketball");
-		basketball.setName("Basketball");
-		basketball.setCategory(sports);
-
-		productRepository.saveAll(Arrays.asList(smartphone, diningTable, tShirt, jeans, faceCream, basketball));
+		productRepository.insertProduct("Smartphone", "smartphone", electronics.getSlug());
+		productRepository.insertProduct("Dining Table", "dining-table", furniture.getSlug());
+		productRepository.insertProduct("T-Shirt", "t-shirt", clothing.getSlug());
+		productRepository.insertProduct("Jeans", "jeans", clothing.getSlug());
+		productRepository.insertProduct("Face Cream", "face-cream", beautyProducts.getSlug());
+		productRepository.insertProduct("Basketball", "basketball", sports.getSlug());
 	}
 
 	private void seedVariants() {
-		Product smartphone = productRepository.findBySlug("smartphone");
-		Product diningTable = productRepository.findBySlug("dining-table");
-		Product tShirt = productRepository.findBySlug("t-shirt");
-		Product jeans = productRepository.findBySlug("jeans");
-		Product faceCream = productRepository.findBySlug("face-cream");
-		Product basketball = productRepository.findBySlug("basketball");
+		Object[] smartphoneResult = productRepository.findBySlug("smartphone");
+		Object[] diningTableResult = productRepository.findBySlug("dining-table");
+		Object[] tShirtResult = productRepository.findBySlug("t-shirt");
+		Object[] jeansResult = productRepository.findBySlug("jeans");
+		Object[] faceCreamResult = productRepository.findBySlug("face-cream");
+		Object[] basketballResult = productRepository.findBySlug("basketball");
 
-		Variant iPhoneCuy = new Variant();
-		iPhoneCuy.setSlug("iphone-16");
-		iPhoneCuy.setName("iPhone 16");
-		iPhoneCuy.setDescription("iPhone baru keluar cuy");
-		iPhoneCuy.setPrice(16_499_000L);
-		iPhoneCuy.setStock(150L);
-		iPhoneCuy.setProduct(smartphone);
+		System.out.println(Arrays.toString(smartphoneResult));
+
+		ProductResponseDto smartphone = new ProductResponseDto(
+			(String) ((Object[]) smartphoneResult[0])[0],
+			(String) ((Object[]) smartphoneResult[0])[1],
+			(String) ((Object[]) smartphoneResult[0])[2]
+		);
+		ProductResponseDto diningTable = new ProductResponseDto(
+			(String) ((Object[]) diningTableResult[0])[0],
+			(String) ((Object[]) diningTableResult[0])[1],
+			(String) ((Object[]) diningTableResult[0])[2]
+		);
+		ProductResponseDto tShirt = new ProductResponseDto(
+			(String) ((Object[]) tShirtResult[0])[0],
+			(String) ((Object[]) tShirtResult[0])[1],
+			(String) ((Object[]) tShirtResult[0])[2]
+		);
+		ProductResponseDto jeans = new ProductResponseDto(
+			(String) ((Object[]) jeansResult[0])[0],
+			(String) ((Object[]) jeansResult[0])[1],
+			(String) ((Object[]) jeansResult[0])[2]
+		);
+		ProductResponseDto faceCream = new ProductResponseDto(
+			(String) ((Object[]) faceCreamResult[0])[0],
+			(String) ((Object[]) faceCreamResult[0])[1],
+			(String) ((Object[]) faceCreamResult[0])[2]
+		);
+		ProductResponseDto basketball = new ProductResponseDto(
+			(String) ((Object[]) basketballResult[0])[0],
+			(String) ((Object[]) basketballResult[0])[1],
+			(String) ((Object[]) basketballResult[0])[2]
+		);
+
+		variantRepository.insertVariant(
+			"iPhone 16", 
+			"iphone-16", 
+			smartphone.getSlug(), 
+			"iPhone baru keluar cuy", 
+			16_499_000L, 
+			150L
+		);
 		
-		Variant googlePixel = new Variant();
-		googlePixel.setSlug("google-pixel-9-pro");
-		googlePixel.setName("Google Pixel 9 Pro");
-		googlePixel.setDescription("Hape gak ramah IMEI");
-		googlePixel.setPrice(23_499_000L);
-		googlePixel.setStock(150L);
-		googlePixel.setProduct(smartphone);
+		variantRepository.insertVariant(
+			"Google Pixel 9 Pro", 
+			"google-pixel-9-pro", 
+			smartphone.getSlug(), 
+			"Hape gak ramah IMEI", 
+			23_499_000L, 
+			150L
+		);
 
-		Variant ikeaTable = new Variant();
-		ikeaTable.setSlug("ikea-dining-table");
-		ikeaTable.setName("IKEA Dining Table - Wooden");
-		ikeaTable.setDescription("bukan untuk rakjel");
-		ikeaTable.setPrice(1_200_000L);
-		ikeaTable.setStock(50L);
-		ikeaTable.setProduct(diningTable);
+		variantRepository.insertVariant(
+			"IKEA Dining Table - Wooden", 
+			"ikea-dining-table-wooden", 
+			diningTable.getSlug(), 
+			"bukan untuk rakjel", 
+			1_200_000L, 
+			50L
+		);
 
-		Variant informaTable = new Variant();
-		informaTable.setSlug("informa-dining-table");
-		informaTable.setName("Informa Dining Table - Wooden");
-		informaTable.setDescription("ini juga bukan untuk rakjel");
-		informaTable.setPrice(1_000_000L);
-		informaTable.setStock(50L);
-		informaTable.setProduct(diningTable);
+		variantRepository.insertVariant(
+			"Infoma Dining Table - Wooden", 
+			"informa-dining-table-wooden", 
+			diningTable.getSlug(), 
+			"ini juga bukan untuk rakjel", 
+			1_000_000L, 
+			75L
+		);
 
-		Variant olimpicTable = new Variant();
-		olimpicTable.setSlug("olimpic-dining-table");
-		olimpicTable.setName("Olimpic Dining Table - Wooden");
-		olimpicTable.setDescription("ini baru buat rakjel");
-		olimpicTable.setPrice(200_000L);
-		olimpicTable.setStock(50L);
-		olimpicTable.setProduct(diningTable);
+		variantRepository.insertVariant(
+			"Olimpic Dining Table - Wooden", 
+			"olimpic-dining-table-wooden", 
+			diningTable.getSlug(), 
+			"ini baru buat rakjel", 
+			200_000L, 
+			15L
+		);
 
-		Variant uniqlo = new Variant();
-		uniqlo.setSlug("uniqlo-ut-jujutsu-kaisen");
-		uniqlo.setName("Uniqlo - UT Jujutsu Kaisen");
-		uniqlo.setDescription("WIBU!!!");
-		uniqlo.setPrice(200_000L);
-		uniqlo.setStock(50L);
-		uniqlo.setProduct(tShirt);
+		variantRepository.insertVariant(
+			"Uniqlo - UT Jujutsu Kaisen", 
+			"uniqlo-ut-jujutsu-kaisen", 
+			tShirt.getSlug(), 
+			"WIBU!!!", 
+			200_000L, 
+			100L
+		);
 
-		Variant hnm = new Variant();
-		hnm.setSlug("hnm-relaxed-fit-flannel-shirt");
-		hnm.setName("H&M - Relaxed Fit Flannel Shirt");
-		hnm.setDescription("skin default mahasiswa npc");
-		hnm.setPrice(200_000L);
-		hnm.setStock(50L);
-		hnm.setProduct(tShirt);
+		variantRepository.insertVariant(
+			"H&M - Relaxed Fit Flannel Shirt", 
+			"h&m-relaxed-fit-flannel-shirt", 
+			tShirt.getSlug(), 
+			"skin default mahasiswa npc", 
+			200_000L, 
+			100L
+		);
 
-		Variant blueJeans = new Variant();
-		blueJeans.setSlug("blue-jeans");
-		blueJeans.setName("Jeans - blue jean");
-		blueJeans.setDescription("jeans ucok");
-		blueJeans.setPrice(200_000L);
-		blueJeans.setStock(50L);
-		blueJeans.setProduct(jeans);
+		variantRepository.insertVariant(
+			"Jeans - blue jean", 
+			"jeans-blue-jeans", 
+			jeans.getSlug(), 
+			"jeans ucok", 
+			200_000L, 
+			100L
+		);
 
-		Variant skintific = new Variant();
-		skintific.setSlug("skintific-msh-niacinamide-brightening-moisturizer");
-		skintific.setName("SKINTIFIC - MSH Niacinamide Brightening Moisturizer");
-		skintific.setDescription("skincare skintific");
-		skintific.setPrice(500_000L);
-		skintific.setStock(50L);
-		skintific.setProduct(faceCream);
+		variantRepository.insertVariant(
+			"SKINTIFIC - MSH Niacinamide Brightening Moisturizer", 
+			"skintific-msh-niacinamide-brightening-moisturizer", 
+			faceCream.getSlug(), 
+			"skincare skintific", 
+			500_000L, 
+			50L
+		);
 
-		Variant whitelab = new Variant();
-		whitelab.setSlug("whitelab-mug-barrier-moisturizer");
-		whitelab.setName("whitelab - Mug Barrier Moisturizer");
-		whitelab.setDescription("skincare whitelab");
-		whitelab.setPrice(500_000L);
-		whitelab.setStock(50L);
-		whitelab.setProduct(faceCream);
+		variantRepository.insertVariant(
+			"whitelab - Mug Barrier Moisturizer", 
+			"whitelab-mug-barrier-moisturizer", 
+			faceCream.getSlug(), 
+			"skincare whitelab", 
+			500_000L, 
+			50L
+		);
 
-		Variant standardBasketball = new Variant();
-		standardBasketball.setSlug("standard-basketball");
-		standardBasketball.setName("Orange Basketball");
-		standardBasketball.setDescription("standard basketball");
-		standardBasketball.setPrice(500_000L);
-		standardBasketball.setStock(50L);
-		standardBasketball.setProduct(basketball);
+		variantRepository.insertVariant(
+			"Standard Orange Basketball", 
+			"standard-orange-basketball", 
+			basketball.getSlug(), 
+			"standard basketball", 
+			500_000L, 
+			50L
+		);
 
-		Variant airlessBasketball = new Variant();
-		airlessBasketball.setSlug("airless-basketball");
-		airlessBasketball.setName("Airless Basketball");
-		airlessBasketball.setDescription("3D-Printed Airless Basketball");
-		airlessBasketball.setPrice(1_000_000L);
-		airlessBasketball.setStock(50L);
-		airlessBasketball.setProduct(basketball);
-
-		variantRepository.saveAll(Arrays.asList(iPhoneCuy, olimpicTable, googlePixel, ikeaTable, informaTable, airlessBasketball, blueJeans, hnm, uniqlo, skintific, standardBasketball, whitelab));
+		variantRepository.insertVariant(
+			"Airless Basketball", 
+			"airless-basketball", 
+			basketball.getSlug(), 
+			"3D-Printed Airless Basketball", 
+			1_000_000L, 
+			50L
+		);
 	}
 }

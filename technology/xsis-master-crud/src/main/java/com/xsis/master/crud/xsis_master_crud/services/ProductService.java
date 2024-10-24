@@ -2,13 +2,10 @@ package com.xsis.master.crud.xsis_master_crud.services;
 
 import java.util.List;
 
-import com.xsis.master.crud.xsis_master_crud.dtos.requests.ProductRequest;
-import com.xsis.master.crud.xsis_master_crud.entities.Product;
+import com.xsis.master.crud.xsis_master_crud.dtos.responses.ProductResponseDto;
+import com.xsis.master.crud.xsis_master_crud.dtos.responses.WebResponse;
 
 public interface ProductService {
-  List<Product> findAllProducts();
-  Product findProductBySlug(String slug);
-  Product createNewProduct(ProductRequest productData);
-  Product updateProductBySlug(String slug, ProductRequest productData);
-  Product deleteProductBySlug(String slug);
+  WebResponse<List<ProductResponseDto>> findAllProducts(int page, int limit);
+  WebResponse<ProductResponseDto> findProductBySlug(String slug);
 }

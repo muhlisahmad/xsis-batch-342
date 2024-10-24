@@ -2,13 +2,10 @@ package com.xsis.master.crud.xsis_master_crud.services;
 
 import java.util.List;
 
-import com.xsis.master.crud.xsis_master_crud.dtos.requests.CategoryRequest;
-import com.xsis.master.crud.xsis_master_crud.entities.Category;
+import com.xsis.master.crud.xsis_master_crud.dtos.responses.CategoryResponseDto;
+import com.xsis.master.crud.xsis_master_crud.dtos.responses.WebResponse;
 
 public interface CategoryService {
-  List<Category> findAllCategories();
-  Category findCategoryBySlug(String slug);
-  Category createNewCategory(CategoryRequest categoryData);
-  Category updateCategoryBySlug(String slug, CategoryRequest categoryRequest);
-  Category deleteCategoryBySlug(String slug);
+  WebResponse<List<CategoryResponseDto>> findAllCategories(int page, int limit);
+  WebResponse<CategoryResponseDto> findCategoryBySlug(String slug);
 }

@@ -1,14 +1,11 @@
 package com.xsis.master.crud.xsis_master_crud.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-// import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -36,7 +33,6 @@ public class Variant extends AuditableEntity {
 
   @ManyToOne
   @JoinColumn(name = "product_id", referencedColumnName = "id")
-  @JsonBackReference
   private Product product;
 
   @Column(length = 150, unique = true)
@@ -45,7 +41,6 @@ public class Variant extends AuditableEntity {
   @Column(length = 150, unique = true)
   private String name;
 
-  // @Lob
   @Column(columnDefinition = "TEXT")
   private String description;
 

@@ -1,15 +1,19 @@
 package com.xsis.master.crud.xsis_master_crud.services;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.xsis.master.crud.xsis_master_crud.dtos.requests.ProductRequest;
-import com.xsis.master.crud.xsis_master_crud.entities.Category;
-import com.xsis.master.crud.xsis_master_crud.entities.Product;
-import com.xsis.master.crud.xsis_master_crud.repositories.CategoryRepository;
+import com.xsis.master.crud.xsis_master_crud.dtos.responses.Pagination;
+import com.xsis.master.crud.xsis_master_crud.dtos.responses.ProductResponseDto;
+import com.xsis.master.crud.xsis_master_crud.dtos.responses.WebResponse;
 import com.xsis.master.crud.xsis_master_crud.repositories.ProductRepository;
 
 @Service
@@ -18,53 +22,37 @@ public class ProductServiceImpl implements ProductService{
   @Autowired
   private ProductRepository productRepository;
 
-  @Autowired
-  private CategoryRepository categoryRepository;
-
   @Override
-  public List<Product> findAllProducts() {
-    return productRepository.findAllProducts();
-  }
+  public WebResponse<List<ProductResponseDto>> findAllProducts(int page, int limit) {
+    Pageable paging = PageRequest.of(page - 1, limit, Sort.by(Sort.Order.asc("name")));
+    Page<Object[]> productsResult = productRepository.findAllProducts(paging);
 
-  @Override
-  public Product findProductBySlug(String slug) {
-    return productRepository.findBySlug(slug);
-  }
-
-  @Override
-  public Product createNewProduct(ProductRequest productData) {
-    Category category = categoryRepository.findBySlug(productData.getCategory());
-    Product checkProduct = productRepository.findBySlug(productData.getSlug());
-    if (checkProduct == null) {
-      Product newProduct = new Product(category, productData.getSlug(), productData.getName());
-      return productRepository.save(newProduct);
-    } else {
-      return null;
+    if (productsResult == null) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Products not found");
     }
+
+    List<ProductResponseDto> products = productsResult.stream()
+      .map(obj -> new ProductResponseDto((String) obj[0], (String) obj[1], (String) obj[2]))
+      .toList();
+    WebResponse<List<ProductResponseDto>> response = new WebResponse<List<ProductResponseDto>>("success", "Products retrieved successfully", products);
+    response.setPagination(new Pagination(page, limit, productsResult.getTotalPages()));
+    return response;
   }
 
   @Override
-  public Product updateProductBySlug(String slug, ProductRequest productData) {
-    Category category = categoryRepository.findBySlug(productData.getCategory());
-    Product checkProduct = productRepository.findBySlug(slug);
-    if (checkProduct == null) {
-      return null;
-    } else {
-      checkProduct.setCategory(category);
-      checkProduct.setName(productData.getName());
-      checkProduct.setSlug(productData.getSlug());
-      return productRepository.save(checkProduct);
-    }
-  }
+  public WebResponse<ProductResponseDto> findProductBySlug(String slug) {
+    Object[] productResult = productRepository.findBySlug(slug);
 
-  @Override
-  public Product deleteProductBySlug(String slug) {
-    Product product = productRepository.findBySlug(slug);
-    if (product == null) {
-      return null;
-    } else {
-      product.setDeletedAt(LocalDateTime.now());
-      return productRepository.save(product);
+    if (productResult.length == 0) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product with given name could not be found");
     }
+
+    ProductResponseDto product = new ProductResponseDto(
+      ((String[]) productResult[0])[0], 
+      ((String[]) productResult[0])[1], 
+      ((String[]) productResult[0])[2]
+    );
+
+    return new WebResponse<ProductResponseDto>("success", "Product retrieved successfully", product);
   }
 }

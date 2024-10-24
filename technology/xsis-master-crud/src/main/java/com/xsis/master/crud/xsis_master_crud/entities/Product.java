@@ -2,9 +2,6 @@ package com.xsis.master.crud.xsis_master_crud.entities;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,11 +33,9 @@ public class Product extends AuditableEntity {
 
   @ManyToOne
   @JoinColumn(name = "category_id", referencedColumnName = "id")
-  @JsonBackReference
   private Category category;
 
   @OneToMany(mappedBy = "product")
-  @JsonManagedReference
   private List<Variant> variants;
 
   @Column(length = 50, unique = true)

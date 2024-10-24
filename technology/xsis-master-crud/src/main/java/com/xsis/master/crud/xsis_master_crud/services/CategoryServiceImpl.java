@@ -1,62 +1,58 @@
 package com.xsis.master.crud.xsis_master_crud.services;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.xsis.master.crud.xsis_master_crud.dtos.requests.CategoryRequest;
-import com.xsis.master.crud.xsis_master_crud.entities.Category;
+import com.xsis.master.crud.xsis_master_crud.dtos.responses.CategoryResponseDto;
+import com.xsis.master.crud.xsis_master_crud.dtos.responses.Pagination;
+import com.xsis.master.crud.xsis_master_crud.dtos.responses.WebResponse;
 import com.xsis.master.crud.xsis_master_crud.repositories.CategoryRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class CategoryServiceImpl implements CategoryService {
   @Autowired
   private CategoryRepository categoryRepository;
 
-  
   @Override
-  public Category findCategoryBySlug(String slug) {
-    return categoryRepository.findBySlug(slug);
-  }
+  public WebResponse<List<CategoryResponseDto>> findAllCategories(int page, int limit) {
+    Pageable paging = PageRequest.of(page - 1, limit, Sort.by(Sort.Order.asc("name")));
+    Page<Object[]> categoriesResult = categoryRepository.findAllCategories(paging);
 
-  @Override
-  public List<Category> findAllCategories() {
-    return categoryRepository.findAllCategories();
-  }
-
-  @Override
-  public Category createNewCategory(CategoryRequest categoryData) {
-    Category category = categoryRepository.findBySlug(categoryData.getSlug());
-    if (category == null) {
-      Category newCategory = new Category(categoryData.getSlug(), categoryData.getName());
-      return categoryRepository.save(newCategory);
-    } else {
-      return null;
+    if (categoriesResult.isEmpty()) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categories not found");
     }
+
+    List<CategoryResponseDto> categories = categoriesResult.stream()
+      .map(obj -> new CategoryResponseDto((String) obj[0], (String) obj[1]))
+      .toList();
+    WebResponse<List<CategoryResponseDto>> response = new WebResponse<List<CategoryResponseDto>>("success", "Categories retrieved successfully", categories);
+    response.setPagination(new Pagination(page, limit, categoriesResult.getTotalPages()));
+    return response;
   }
 
   @Override
-  public Category updateCategoryBySlug(String slug, CategoryRequest categoryRequest) {
-    Category category = categoryRepository.findBySlug(slug);
-    if (category == null) {
-      return null;
-    } else {
-      category.setName(categoryRequest.getName());
-      category.setSlug(categoryRequest.getSlug());
-      return categoryRepository.save(category);
+  public WebResponse<CategoryResponseDto> findCategoryBySlug(String slug) {
+    Object[] categoryResult = categoryRepository.findBySlug(slug);
+    
+    if (categoryResult.length == 0) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category with given name could not be found");
     }
-  }
 
-  @Override
-  public Category deleteCategoryBySlug(String slug) {
-    Category category = categoryRepository.findBySlug(slug);
-    if (category == null) {
-      return null;
-    } else {
-      category.setDeletedAt(LocalDateTime.now());
-      return categoryRepository.save(category);
-    }
+    CategoryResponseDto category = new CategoryResponseDto(
+      (String) ((Object[]) categoryResult[0])[0],
+      (String) ((Object[]) categoryResult[0])[1]
+    );
+    return new WebResponse<>("success", "Category retrieved successfully", category);
   }
 }
